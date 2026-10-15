@@ -9,7 +9,7 @@
   --bg:#f6f6f2; --surface:#ffffff; --text:#1d1f23; --muted:#6b7078; --line:#e2e2dc;
   --accent:#3b5bdb; --accent-ink:#ffffff; --accent-soft:#e8edff;
   --good:#2b8a3e; --good-bg:#e6f4ea; --bad:#c92a2a; --bad-bg:#fdecec;
-  --s0:#868e96; --s1:#3b82f6; --s2:#8b5cf6; --s3:#0d9488; --s4:#2b8a3e;
+  --s0:#868e96; --s1:#3b82f6; --s2:#8b5cf6; --s3:#0d9488; --s4:#e8590c; --s5:#2b8a3e;
   --shadow:0 1px 2px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.05);
   --r:14px;
 }
@@ -31,8 +31,6 @@ h2{font-size:1.05rem;margin:28px 0 10px;letter-spacing:.01em}
 .sub{color:var(--muted);margin:0 0 16px}
 .muted{color:var(--muted)}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
-.row{display:flex;flex-wrap:wrap;align-items:center}
-.gap{gap:10px}
 .btn{appearance:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:600;transition:transform .05s,background .15s}
 .btn:hover{background:var(--accent-soft)}
 .btn:active{transform:translateY(1px)}
@@ -40,9 +38,8 @@ h2{font-size:1.05rem;margin:28px 0 10px;letter-spacing:.01em}
 .btn.primary:hover{filter:brightness(1.08);background:var(--accent)}
 .btn.ghost{background:transparent}
 .btn.sm{padding:6px 12px;font-size:.9rem}
-.btn.good{background:var(--good-bg);border-color:var(--good);color:var(--good)}
 .btn.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
-.btn[disabled]{opacity:.55;cursor:default}
+.btn[disabled]{opacity:.5;cursor:default}
 .topbar{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .topbar .ttl{font-weight:700;flex:1}
 .topbar .meta{color:var(--muted);font-size:.9rem}
@@ -71,22 +68,27 @@ h2{font-size:1.05rem;margin:28px 0 10px;letter-spacing:.01em}
 .pcard .bar i{display:block;height:100%}
 .pcard .rt{text-align:right;font-size:.8rem;color:var(--muted);white-space:nowrap}
 .tag{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:99px;color:#fff}
-.st0{background:var(--s0)}.st1{background:var(--s1)}.st2{background:var(--s2)}.st3{background:var(--s3)}.st4{background:var(--s4)}
+.st0{background:var(--s0)}.st1{background:var(--s1)}.st2{background:var(--s2)}.st3{background:var(--s3)}.st4{background:var(--s4)}.st5{background:var(--s5)}
+.ladder{display:flex;gap:4px;margin:10px 0 2px}
+.ladder span{flex:1;font-size:.7rem;text-align:center;padding:3px 0;border-radius:6px;background:var(--line);color:var(--muted);font-weight:700}
+.ladder span.on{color:#fff}
 .foot{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;color:var(--muted);font-size:.85rem}
 
-/* generic study */
+/* study */
 .prompt{font-weight:700;margin:4px 0 10px}
 .badge{display:inline-block;font-size:.78rem;font-weight:700;color:#fff;padding:3px 10px;border-radius:99px;margin-bottom:10px}
-.pchip{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);border-radius:99px;padding:4px 12px;font-weight:700;margin-bottom:10px}
+.pchip{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);border-radius:99px;padding:4px 12px;font-weight:700;margin-bottom:6px}
 .pchip .em{font-size:1.2rem}
 .pchip .num{color:var(--muted)}
+.meaning{color:var(--muted);font-size:.9rem;margin:0 0 12px}
+.meaning b{color:var(--accent);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;margin-right:6px}
 .teach .t-head{display:flex;gap:14px;align-items:center;margin-bottom:8px}
 .big-em{font-size:2.6rem;line-height:1}
 .t-num{color:var(--muted);font-size:.85rem;font-weight:600}
 .t-kw{font-size:1.4rem;font-weight:800}
 .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin:14px 0 2px}
-.t-sum{font-weight:600;margin:0}
-.t-full{margin:0;color:var(--muted)}
+.t-sum{margin:0;color:var(--muted)}
+.t-full{margin:0;font-weight:600;font-size:1.05rem}
 .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .fb{margin-top:14px;padding:10px 14px;border-radius:10px;font-weight:600}
 .fb.ok{background:var(--good-bg);color:var(--good)}
@@ -100,32 +102,29 @@ h2{font-size:1.05rem;margin:28px 0 10px;letter-spacing:.01em}
 .blank.ok .ans{color:var(--good);background:var(--good-bg);border-radius:6px;padding:1px 5px;font-weight:700}
 .blank.bad .ans{color:var(--bad);background:var(--bad-bg);border-radius:6px;padding:1px 5px;font-weight:700}
 .blank .typed{color:var(--muted);margin-right:4px}
+
+/* recall */
 textarea{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:12px;resize:vertical;font-size:1.02rem;line-height:1.6}
 textarea:focus{outline:2px solid var(--accent)}
 .hit{background:var(--good-bg);color:var(--good);border-radius:4px;padding:0 2px}
 .miss{background:var(--bad-bg);color:var(--bad);border-radius:4px;padding:0 2px;font-weight:700}
-.hintline{font-family:ui-monospace,Menlo,monospace;color:var(--muted);letter-spacing:.06em;margin:8px 0;word-break:break-word}
+.hintline{font-family:ui-monospace,Menlo,monospace;color:var(--muted);letter-spacing:.04em;margin:8px 0 12px;word-break:break-word;line-height:1.8;font-size:1.02rem}
+.cue{background:var(--accent-soft);border-radius:10px;padding:10px 14px;color:var(--text)}
+.liveview{min-height:3.2em;line-height:2;margin:0 0 10px;padding:8px 12px;border:1px dashed var(--line);border-radius:10px}
+.liveview:empty::before{content:'Your words appear here, green when right and red when off.';color:var(--muted);font-size:.9rem}
+.typing{color:var(--muted);border-bottom:2px solid var(--accent)}
+.small{font-size:.85rem}
 
-/* choice */
-.opts{display:grid;gap:8px;margin-top:6px}
-.opt{text-align:left;width:100%;cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;font-weight:600}
-.opt:hover:not([disabled]){border-color:var(--accent);background:var(--accent-soft)}
-.opt.right{border-color:var(--good);background:var(--good-bg);color:var(--good)}
-.opt.wrong{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
-.scn{font-size:1.1rem;margin:6px 0 14px}
+/* scramble */
+.answer{min-height:64px;border:2px dashed var(--line);border-radius:12px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;margin-bottom:14px}
+.answer:empty::before{content:'Tap phrases below in order…';color:var(--muted);font-size:.9rem;padding:6px}
+.pool{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 12px;cursor:pointer;font-weight:600;box-shadow:var(--shadow);text-align:left}
+.chip:hover{border-color:var(--accent)}
+.chip.ok{border-color:var(--good);background:var(--good-bg);color:var(--good)}
+.chip.bad{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
 
-/* flashcards */
-.fcard{display:block;width:100%;min-height:260px;text-align:center;cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:24px;box-shadow:var(--shadow);animation:pop .18s ease}
-.fcard.flipped{background:var(--accent-soft)}
-.fcard .em{font-size:4rem;line-height:1.1}
-.fcard .k{font-size:1.8rem;font-weight:800;margin:6px 0}
-.fcard .n{color:var(--muted);font-weight:700}
-.fcard .s{font-weight:600;margin:8px 0}
-.fcard .f{color:var(--muted);font-size:.95rem;text-align:left;margin-top:10px}
-.fcard .tap{color:var(--muted);font-size:.85rem;margin-top:14px}
-@keyframes pop{from{transform:scale(.98);opacity:.6}to{transform:none;opacity:1}}
-
-/* seg + form */
+/* forms */
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);flex-wrap:wrap}
 .segb{appearance:none;border:0;background:transparent;padding:8px 12px;cursor:pointer;font-weight:600;font-size:.92rem}
 .segb.on{background:var(--accent);color:var(--accent-ink)}
@@ -133,25 +132,10 @@ textarea:focus{outline:2px solid var(--accent)}
 .field label{display:block;font-weight:700;margin-bottom:6px}
 select{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 12px;min-width:220px;max-width:100%}
 
-/* matching */
-.mgrid{display:grid;gap:8px}
-.slot{display:grid;grid-template-columns:minmax(70px,auto) 1fr;gap:10px;align-items:stretch}
-.slot .lab{display:flex;align-items:center;font-weight:700;padding:6px 4px}
-.drop{min-height:44px;border:2px dashed var(--line);border-radius:10px;padding:8px 12px;display:flex;align-items:center;cursor:pointer;transition:border-color .1s,background .1s}
-.drop.over{border-color:var(--accent);background:var(--accent-soft)}
-.drop.filled{border-style:solid;border-color:var(--good);background:var(--good-bg);color:var(--good);font-weight:600;cursor:default}
-.drop.shake{animation:shake .35s;border-color:var(--bad)}
-@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.pool{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
-.chip{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 12px;cursor:grab;font-weight:600;box-shadow:var(--shadow);text-align:left}
-.chip.sel{outline:3px solid var(--accent);background:var(--accent-soft)}
-.chip.long{flex:1 1 100%}
-
 @media (max-width:520px){
   .stats{gap:6px}
   .cloze-text{font-size:1.02rem}
-  .fcard .em{font-size:3.2rem}
-  .slot{grid-template-columns:1fr}
+  .ladder span{font-size:.62rem}
 }
 </style>
 </head>
@@ -164,78 +148,44 @@ select{border:1px solid var(--line);background:var(--surface);border-radius:10px
 const P = [
   { n:1, e:'🧬', k:'Dynamic',
     s:'Who a child is by nature and the world around them keep shaping each other as the child grows.',
-    t:"Development and learning are dynamic processes that reflect the complex interplay between a child's biological characteristics and the environment, each shaping the other as well as future patterns of growth.",
-    sc:[
-      "A child who is naturally very sensitive to noise is given a quiet corner. Feeling calm there, she gradually becomes more willing to join busy group activities, which in turn changes how she responds to noise.",
-      "A teacher notices that a child's temperament affects how adults respond to him, and that those responses then shape how he behaves later on.",
-      "A child born prematurely makes big gains over several months in a responsive, language-rich classroom."
-    ] },
+    t:"Development and learning are dynamic processes that reflect the complex interplay between a child's biological characteristics and the environment, each shaping the other as well as future patterns of growth." },
   { n:2, e:'🧩', k:'All domains',
     s:'Body, thinking, feelings, and language all matter, and growth in one helps the others.',
-    t:"All domains of child development – physical development, cognitive development, social and emotional development, and linguistic development (including bilingual or multilingual development), as well as approaches to learning – are important; each domain both supports and is supported by the others.",
-    sc:[
-      "A teacher realizes that a child who struggles to make friends is also behind in language, and plans to support both because progress in one will help the other.",
-      "A child who is physically exhausted can't focus or manage feelings, so the teacher adjusts the schedule rather than treating attention as a purely mental issue.",
-      "A program gives equal attention to motor, thinking, social-emotional, and language growth rather than focusing on one area."
-    ] },
+    t:"All domains of child development – physical development, cognitive development, social and emotional development, and linguistic development (including bilingual or multilingual development), as well as approaches to learning – are important; each domain both supports and is supported by the others." },
   { n:3, e:'🎲', k:'Play',
     s:'Play is how children learn happily, and every child needs it from birth to age 8.',
-    t:"Play promotes joyful learning that fosters self-regulation, language, cognitive and social competencies as well as content knowledge across disciplines. Play is essential for all children, birth through age 8.",
-    sc:[
-      "A first-grade teacher protects daily time for blocks and pretend play because it builds self-regulation, language, and social skills.",
-      "A director defends keeping play in kindergarten and second grade, explaining it is essential for children right up through age 8.",
-      "Children running a pretend restaurant negotiate roles, talk constantly, and practice writing menus, all while having fun."
-    ] },
+    t:"Play promotes joyful learning that fosters self-regulation, language, cognitive and social competencies as well as content knowledge across disciplines. Play is essential for all children, birth through age 8." },
   { n:4, e:'🌍', k:'Variation',
     s:'Children follow a general pattern of growth, but culture, experiences, and each child\'s own makeup make every child different.',
-    t:"Although general progression of development and learning can be identified, variations due to cultural contexts, experiences, and individual differences must also be considered.",
-    sc:[
-      "A teacher uses a milestone chart as a general guide but isn't alarmed that a child from a multilingual home speaks English later, and considers the child's cultural and language experiences.",
-      "Two four-year-olds are the same age: one reads simple words and the other is still learning letters. The teacher plans differently for each.",
-      "A teacher learns that norms about eye contact differ across families' cultures and adjusts her expectations."
-    ] },
+    t:"Although general progression of development and learning can be identified, variations due to cultural contexts, experiences, and individual differences must also be considered." },
   { n:5, e:'🔍', k:'Active learners',
     s:'Children learn actively from day one, making sense of the world through people, surroundings, and experiences.',
-    t:"Children are active learners from birth, constantly taking in and organizing information to create meaning through their relationships, their interactions with their environment, and their overall experiences.",
-    sc:[
-      "A baby bangs a spoon and watches what happens, then tries it on a different surface. She is running her own experiments.",
-      "Rather than only lecturing, a teacher sets out ramps and balls so children can explore, test ideas, and make sense of motion themselves.",
-      "Newborns study caregivers' faces and voices, already organizing what they take in."
-    ] },
+    t:"Children are active learners from birth, constantly taking in and organizing information to create meaning through their relationships, their interactions with their environment, and their overall experiences." },
   { n:6, e:'🔥', k:'Motivation',
     s:'Children want to learn when they feel they belong, their work has purpose, and they have a say. Teachers build on each child\'s strengths and connect to home and community.',
-    t:"Children's motivation to learn is increased when their learning environment fosters their sense of belonging, purpose, and agency. Curricula and teaching methods build on each child's assets by connecting their experiences in the school or learning environment to their home and community settings.",
-    sc:[
-      "A teacher invites families to share traditions and adds books in children's home languages so each child feels they belong.",
-      "Children help plan a class garden, deciding what to grow and who does which job, so the work feels purposeful and they have a say.",
-      "A teacher builds a lesson on a child's strength, his knowledge of his grandfather's fishing boat, linking home life to classroom learning."
-    ] },
+    t:"Children's motivation to learn is increased when their learning environment fosters their sense of belonging, purpose, and agency. Curricula and teaching methods build on each child's assets by connecting their experiences in the school or learning environment to their home and community settings." },
   { n:7, e:'🔗', k:'Integrated',
     s:'Children learn across subjects all at once, so teachers must know each subject, how skills build in it, and how to teach it well.',
-    t:"Children learn in an integrated fashion that cuts across academic disciplines or subject areas. Because the foundations of subject area knowledge are established in early childhood, educators need subject area-knowledge, an understanding of the learning progressions within each subject area, and pedagogical knowledge about teaching each subject area's content effectively.",
-    sc:[
-      "A project on building a bridge brings math, science, literacy, and art together in one investigation.",
-      "A teacher studies how early number sense develops and how to teach it well, because the foundations of math are laid in the early years.",
-      "A read-aloud about seasons leads children to chart the weather, draw observations, and write captions, all in one connected unit."
-    ] },
+    t:"Children learn in an integrated fashion that cuts across academic disciplines or subject areas. Because the foundations of subject area knowledge are established in early childhood, educators need subject area-knowledge, an understanding of the learning progressions within each subject area, and pedagogical knowledge about teaching each subject area's content effectively." },
   { n:8, e:'🪜', k:'Just beyond',
     s:'Children grow when a task is a little harder than what they can already do, and they get lots of chances to practice and think it over.',
-    t:"Development and learning advance when children are challenged to achieve at a level just beyond their current mastery and when they have many opportunities to reflect on and practice newly acquired skills.",
-    sc:[
-      "A teacher offers a puzzle slightly harder than last week's, gives a small hint, then lets the child redo it and talk about what worked.",
-      "A child who has just learned to hop on one foot gets many chances to practice and is asked what felt different this time.",
-      "A teacher notices a task is too easy for a child and nudges it to a level just out of reach, with support."
-    ] },
+    t:"Development and learning advance when children are challenged to achieve at a level just beyond their current mastery and when they have many opportunities to reflect on and practice newly acquired skills." },
   { n:9, e:'💻', k:'Technology',
     s:'Technology and interactive media can help children learn when adults use them thoughtfully and on purpose.',
-    t:"Used responsibly and intentionally, technology and interactive media can be valuable tools for supporting children's development and learning.",
-    sc:[
-      "A teacher has a child record and replay her own story on a tablet, then talks with her about it.",
-      "The class video-calls a grandparent overseas, and the teacher chose this interactive media on purpose to support a learning goal.",
-      "A program selects digital tools carefully and limits their use so they add to, rather than replace, hands-on interaction."
-    ] }
+    t:"Used responsibly and intentionally, technology and interactive media can be valuable tools for supporting children's development and learning." }
 ];
-const STAGE_NAMES = ['Keyword','Summary','Partial text','Full text'];
+
+/* ================= LEARNING PATH =================
+   Every principle climbs a ladder on its exact wording:
+   20% of words hidden -> 40% -> 60% -> 80% -> the whole thing from memory.
+   Mastered = MASTER perfect from-memory recalls, spaced out over days. */
+const STAGE_FRACS = [0.2, 0.4, 0.6, 0.8, 1];
+const STAGE_NAMES = ['20% hidden', '40% hidden', '60% hidden', '80% hidden', 'From memory'];
+const STAGE_SHORT = ['20%', '40%', '60%', '80%', 'Recall'];
+const LAST = STAGE_NAMES.length - 1;
+const NEED = [1, 1, 1, 2];   // passes needed to climb out of each practice step
+const MASTER = 3;            // perfect from-memory recalls needed for "Mastered"
+const PASS = 0.9;            // practice steps pass at 90%; the final step needs 100%
 const STOP = new Set('the and that with their from each both also when they have which through within across must can are for its our into than this these those between because although been were was has had who whom while about such other more most some any all'.split(' '));
 
 /* ================= HELPERS ================= */
@@ -258,11 +208,19 @@ const app = document.getElementById('app');
 
 /* ================= STORAGE + SPACED REPETITION ================= */
 const KEY = 'dap-memorize-v1';
-const fresh = () => ({ p: P.map(() => ({ stage: 0, streak: 0, due: 0, seen: false, misses: 0 })) });
+const fresh = () => ({ v: 3, p: P.map(() => ({ stage: 0, streak: 0, due: 0, seen: false, misses: 0 })) });
 function loadState() {
   let s = null;
   try { const raw = localStorage.getItem(KEY); if (raw) s = JSON.parse(raw); } catch (e) {}
-  if (!s || !Array.isArray(s.p) || s.p.length !== P.length) s = fresh();
+  if (!s || !Array.isArray(s.p) || s.p.length !== P.length) return fresh();
+  if (!s.v) { s.p.forEach(x => { x.stage = Math.max(0, (x.stage || 0) - 1); }); s.v = 2; }
+  if (s.v === 2) { // old path: 0 summary, 1 partial, 2 full text
+    s.p.forEach(x => {
+      if (x.stage === 2 && x.streak >= 4) { x.stage = LAST; x.streak = MASTER; }
+      else { x.stage = [0, 1, 3][Math.min(2, x.stage || 0)]; x.streak = 0; }
+    });
+    s.v = 3;
+  }
   return s;
 }
 let state = loadState();
@@ -270,11 +228,12 @@ function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catc
 
 const MIN = 60e3, DAY = 864e5, INT = [10 * MIN, DAY, 3 * DAY, 7 * DAY, 14 * DAY, 30 * DAY];
 
-/* level = which stage the task exercises (0 keyword, 1 summary, 2 partial, 3 full).
-   A correct answer only advances a principle if the task level >= its current stage.
-   Any miss (including using a hint) resets the streak and brings it back soon. */
+/* level = which step a task exercises (0 = 20% hidden ... 4 = from memory).
+   A pass only moves a principle forward if level >= its current step.
+   A miss (or using a hint) resets the streak and brings it back soon.
+   Returns 'up' when the principle climbed a step. */
 function record(i, ok, level) {
-  const s = state.p[i], now = Date.now();
+  const s = state.p[i], now = Date.now(); let out = null;
   s.seen = true;
   if (!ok) {
     s.streak = 0; s.misses = (s.misses || 0) + 1; s.due = now + 2 * MIN;
@@ -283,17 +242,25 @@ function record(i, ok, level) {
     s.misses = 0;
     if (level >= s.stage) {
       s.streak++;
-      if (s.stage < 3 && s.streak >= 2) { s.stage++; s.streak = 0; s.due = now + 10 * MIN; }
-      else s.due = now + INT[Math.min(s.streak - 1, INT.length - 1)];
+      if (s.stage < LAST && s.streak >= NEED[s.stage]) { s.stage++; s.streak = 0; s.due = now; out = 'up'; }
+      else s.due = now + (s.stage < LAST ? 10 * MIN : INT[Math.min(s.streak - 1, INT.length - 1)]);
     }
   }
-  save();
+  save(); return out;
 }
-const steps = s => s.stage < 3 ? s.stage * 2 + Math.min(s.streak, 2) : 6 + Math.min(s.streak, 4);
-const progress = i => steps(state.p[i]) / 10;
-const isMastered = s => s.stage === 3 && s.streak >= 4;
+/* From-memory attempts: 100% counts toward mastery, 90%+ counts as an 80%-step pass. */
+function recordRecall(i, res) {
+  if (res.hints) return record(i, false, LAST);
+  if (res.perfect) return record(i, true, LAST);
+  if (res.acc >= PASS) return record(i, true, LAST - 1);
+  return record(i, false, LAST);
+}
+const TOTAL_STEPS = NEED.reduce((a, b) => a + b, 0) + MASTER;
+const steps = s => NEED.slice(0, s.stage).reduce((a, b) => a + b, 0) + Math.min(s.streak, s.stage < LAST ? NEED[s.stage] : MASTER);
+const progress = i => steps(state.p[i]) / TOTAL_STEPS;
+const isMastered = s => s.stage === LAST && s.streak >= MASTER;
 const stageLabel = s => isMastered(s) ? 'Mastered' : STAGE_NAMES[s.stage];
-const stageCls = s => 'st' + (isMastered(s) ? 4 : s.stage);
+const stageCls = s => 'st' + (isMastered(s) ? 5 : s.stage);
 const isDue = i => state.p[i].due <= Date.now();
 function dueText(i) {
   const s = state.p[i]; if (!s.seen) return 'New';
@@ -313,6 +280,7 @@ function tokenize(text) {
     return { pre: m[1], core: m[2], suf: m[3] };
   });
 }
+const tokText = t => t.pre + t.core + t.suf;
 const eligible = tokens => tokens.map((t, i) => hasAl(t.core) ? i : -1).filter(i => i >= 0);
 const isContent = w => { const n = norm(w); return n.length > 3 && !STOP.has(n); };
 function pickHidden(tokens, frac, mode) {
@@ -321,6 +289,24 @@ function pickHidden(tokens, frac, mode) {
   if (mode === 'content') order = [...shuffle(el.filter(i => isContent(tokens[i].core))), ...shuffle(el.filter(i => !isContent(tokens[i].core)))];
   else order = shuffle(el);
   return new Set(order.slice(0, n));
+}
+const initials = tokens => tokens.map(t => hasAl(t.core) ? t.pre + t.core[0] + t.suf : t.pre + t.suf).join(' ');
+/* Split a principle into short phrases at punctuation, then break up long runs. */
+function phrases(text) {
+  const runs = []; let cur = [];
+  tokenize(text).forEach(t => {
+    if (!hasAl(t.core)) { if (cur.length) runs.push(cur); cur = [t]; return; }
+    cur.push(t);
+    if (/[,;.:)]/.test(t.suf)) { runs.push(cur); cur = []; }
+  });
+  if (cur.length) runs.push(cur);
+  const out = [];
+  runs.forEach(r => {
+    if (r.length <= 7) { out.push(r); return; }
+    const parts = Math.ceil(r.length / 6), size = Math.ceil(r.length / parts);
+    for (let k = 0; k < r.length; k += size) out.push(r.slice(k, k + size));
+  });
+  return out.map(r => r.map(tokText).join(' '));
 }
 function lev(a, b) {
   const m = a.length, n = b.length; if (!m) return n; if (!n) return m;
@@ -332,7 +318,7 @@ function lev(a, b) {
   }
   return prev[n];
 }
-/* forgiving: ignores case/punctuation, allows one-letter typo on words of 4+ letters */
+/* forgiving: ignores case/punctuation, allows a one-letter typo on words of 4+ letters */
 const eqw = (a, b) => !!a && !!b && (a === b || (b.length >= 4 && lev(a, b) <= 1));
 const match = (typed, core) => eqw(norm(typed), norm(core));
 function lcsMark(A, B) {
@@ -347,7 +333,6 @@ function lcsMark(A, B) {
   }
   return { hit, len: d[n][m] };
 }
-const PASS = 0.9;
 
 /* ================= UI COMPONENTS ================= */
 function seg(opts, val, on) {
@@ -365,17 +350,20 @@ function shell(title) {
   app.append(h('div', { class: 'wrap' }, bar, prog, body));
   return { body, meta, setProg: f => { prog.firstChild.style.width = Math.round(f * 100) + '%'; } };
 }
-const pChip = (i, hideKw) => h('div', { class: 'pchip' }, h('span', { class: 'em' }, P[i].e), h('span', { class: 'num' }, '#' + P[i].n), hideKw ? null : h('span', null, P[i].k));
-const lab = i => '#' + P[i].n + ' ' + P[i].e + ' ' + P[i].k;
+const pChip = i => h('div', { class: 'pchip' }, h('span', { class: 'em' }, P[i].e), h('span', { class: 'num' }, '#' + P[i].n), h('span', null, P[i].k));
+const meaning = i => h('p', { class: 'meaning' }, h('b', null, 'Meaning'), P[i].s);
+const head = i => [pChip(i), meaning(i)];
 function teach(i) {
   const p = P[i];
   return h('div', { class: 'card teach' },
     h('div', { class: 't-head' }, h('span', { class: 'big-em' }, p.e), h('div', null, h('div', { class: 't-num' }, 'Principle ' + p.n), h('div', { class: 't-kw' }, p.k))),
-    h('div', { class: 'eyebrow' }, 'Summary'), h('p', { class: 't-sum' }, p.s),
-    h('div', { class: 'eyebrow' }, 'Full text'), h('p', { class: 't-full' }, p.t));
+    h('div', { class: 'eyebrow' }, 'Full text'), h('p', { class: 't-full' }, p.t),
+    h('div', { class: 'eyebrow' }, 'Summary'), h('p', { class: 't-sum' }, p.s));
 }
-
-/* Encouraging feedback line shared by the typing modes. */
+function ladder(s) {
+  return h('div', { class: 'ladder' }, STAGE_SHORT.map((l, k) =>
+    h('span', { class: (k < s.stage || isMastered(s)) ? 'on st5' : k === s.stage ? 'on st' + k : '' }, l)));
+}
 function gradeMsg(score, ok, perfect, hints, tip) {
   if (ok) return (perfect ? 'Perfect! ' : 'Nice work! ') + score + ' ✓';
   if (hints) return 'Hint used, so keep trying! ' + score + '.';
@@ -389,7 +377,7 @@ function cloze(o) {
   const blanks = []; let last = null, hints = 0, graded = false;
   const fb = h('div'), actions = h('div', { class: 'actions' });
   o.tokens.forEach((t, i) => {
-    if (!o.hidden.has(i)) { para.append(t.pre + t.core + t.suf, ' '); return; }
+    if (!o.hidden.has(i)) { para.append(tokText(t), ' '); return; }
     const inp = h('input', { type: 'text', autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false', 'aria-label': 'blank ' + (blanks.length + 1) });
     inp.style.width = (Math.max(t.core.length, 3) + 1.6) + 'ch';
     const b = { t, inp, hint: 0 };
@@ -414,8 +402,7 @@ function cloze(o) {
     if (!norm(b.inp.value).startsWith(norm(rev))) b.inp.value = rev;
     b.inp.focus(); hintBtn.textContent = '💡 Hint (' + hints + ' used)';
   } }, '💡 Hint');
-  const checkBtn = h('button', { class: 'btn primary', type: 'button', onclick: () => check() }, 'Check');
-  actions.append(checkBtn, hintBtn);
+  actions.append(h('button', { class: 'btn primary', type: 'button', onclick: () => check() }, 'Check'), hintBtn);
   function check() {
     if (graded) return; graded = true; let c = 0;
     blanks.forEach(b => {
@@ -424,9 +411,9 @@ function cloze(o) {
       b.wrap.replaceChildren(b.t.pre, ok ? '' : (typed ? h('s', { class: 'typed' }, typed) : ''), h('span', { class: 'ans' }, b.t.core), b.t.suf);
     });
     const total = blanks.length, acc = total ? c / total : 1;
-    const res = { ok: acc >= PASS && hints === 0, acc, correct: c, total, hints };
+    const res = { ok: acc >= PASS && hints === 0, acc, perfect: c === total, hints };
     fb.className = 'fb ' + (res.ok ? 'ok' : 'no');
-    fb.textContent = gradeMsg(c + ' of ' + total + ' correct', res.ok, c === total, hints);
+    fb.textContent = gradeMsg(c + ' of ' + total + ' correct', res.ok, res.perfect, hints);
     actions.replaceChildren(); o.afterGrade(res, actions);
   }
   root.append(para, fb, actions);
@@ -434,57 +421,90 @@ function cloze(o) {
   return root;
 }
 
-/* Full recall: type the whole thing. o: {tokens, afterGrade} */
+/* Type the whole principle.
+   o: {tokens, afterGrade, pass (default 0.9), cue (text shown above, e.g. first letters),
+       live (color each word as you type), hint (false to hide the hint button)} */
 function recall(o) {
   const root = h('div');
-  const words = eligible(o.tokens);
-  const A = words.map(i => norm(o.tokens[i].core));
-  const ta = h('textarea', { rows: 7, placeholder: 'Type the principle from memory…', spellcheck: 'false' });
+  const words = eligible(o.tokens), A = words.map(i => norm(o.tokens[i].core));
+  const pass = o.pass == null ? PASS : o.pass;
+  const ta = h('textarea', { rows: 6, placeholder: 'Type the full principle…', spellcheck: 'false', autocapitalize: 'off', autocorrect: 'off', autocomplete: 'off' });
   const hintBox = h('div'), fb = h('div'), out = h('div'), actions = h('div', { class: 'actions' });
+  const liveView = o.live ? h('div', { class: 'liveview' }) : null, count = o.live ? h('div', { class: 'muted small' }) : null;
   let hints = 0, graded = false;
-  const hintBtn = h('button', { class: 'btn ghost', type: 'button', onclick: () => {
+  const parse = () => {
+    const raw = ta.value, parts = raw.split(/\s+/).filter(Boolean);
+    const done = (!raw || /\s$/.test(raw)) ? parts : parts.slice(0, -1);
+    return { done, typing: done.length < parts.length ? parts[parts.length - 1] : '' };
+  };
+  function renderLive() {
+    if (!o.live || graded) return;
+    const { done, typing } = parse();
+    liveView.replaceChildren(...done.flatMap((w, j) => [h('span', { class: j < A.length && eqw(norm(w), A[j]) ? 'hit' : 'miss' }, w), ' ']), typing ? h('span', { class: 'typing' }, typing) : '');
+    count.textContent = Math.min(done.length, A.length) + ' of ' + A.length + ' words';
+  }
+  if (o.live) { ta.addEventListener('input', renderLive); renderLive(); }
+  const hintLabel = o.live ? '💡 Next word' : '💡 First letters';
+  const hintBtn = o.hint === false ? null : h('button', { class: 'btn ghost', type: 'button', onclick: () => {
     if (graded) return; hints++;
-    hintBox.replaceChildren(h('div', { class: 'hintline' }, words.map(i => o.tokens[i].core[0]).join(' ')));
-    hintBtn.textContent = '💡 Hint (' + hints + ' used)';
-  } }, '💡 First letters');
-  const checkBtn = h('button', { class: 'btn primary', type: 'button', onclick: () => {
+    if (o.live) {
+      const { done } = parse(), k = done.length;
+      if (k < words.length) { ta.value = [...done, tokText(o.tokens[words[k]])].join(' ') + ' '; renderLive(); ta.focus(); }
+    } else hintBox.replaceChildren(h('div', { class: 'hintline' }, initials(o.tokens)));
+    hintBtn.textContent = hintLabel + ' (' + hints + ' used)';
+  } }, hintLabel);
+  function check() {
     if (graded) return; graded = true;
     const B = ta.value.split(/\s+/).map(norm).filter(Boolean);
     const { hit, len } = lcsMark(A, B);
-    const acc = len / Math.max(A.length, B.length, 1);
-    const res = { ok: acc >= PASS && hints === 0, acc, correct: len, total: A.length, hints };
+    const acc = len / Math.max(A.length, B.length, 1), perfect = len === A.length && B.length === A.length;
+    const res = { ok: (pass >= 1 ? perfect : acc >= pass) && hints === 0, acc, perfect, hints };
     ta.disabled = true; hintBox.replaceChildren();
-    const orig = h('p', { class: 'cloze-text' }); let k = 0;
-    o.tokens.forEach((t, i) => {
-      const w = t.pre + t.core + t.suf;
-      if (!hasAl(t.core)) { orig.append(w, ' '); return; }
-      orig.append(h('span', { class: hit[k++] ? 'hit' : 'miss' }, w), ' ');
+    const orig = h('p', { class: 'cloze-text', style: 'line-height:1.9' }); let k = 0;
+    o.tokens.forEach(t => {
+      if (!hasAl(t.core)) { orig.append(tokText(t), ' '); return; }
+      orig.append(h('span', { class: hit[k++] ? 'hit' : 'miss' }, tokText(t)), ' ');
     });
-    out.replaceChildren(h('div', { class: 'muted' }, 'Original (green = you recalled it, red = still to learn):'), orig);
+    out.replaceChildren(h('div', { class: 'muted', style: 'margin-top:12px' }, 'Original (green = you recalled it, red = still to learn):'), orig);
+    const tip = pass >= 1 && acc >= PASS ? 'So close! Every word is needed for this step.' : 'Aim for ' + Math.round(pass * 100) + '% to move up.';
     fb.className = 'fb ' + (res.ok ? 'ok' : 'no');
-    fb.textContent = gradeMsg(Math.round(acc * 100) + '% word match', res.ok, acc >= 0.995, hints, 'Aim for 90% to move up.');
+    fb.textContent = gradeMsg(Math.floor(acc * 100) + '% word match', res.ok, perfect, hints, tip);
     actions.replaceChildren(); o.afterGrade(res, actions);
-  } }, 'Check');
-  actions.append(checkBtn, hintBtn);
-  root.append(ta, hintBox, fb, out, actions);
+  }
+  ta.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); check(); } });
+  actions.append(h('button', { class: 'btn primary', type: 'button', onclick: check }, 'Check'), hintBtn);
+  root.append(o.cue ? h('div', { class: 'hintline cue' }, o.cue) : null, liveView, count, ta, hintBox, fb, out, actions,
+    h('p', { class: 'muted small' }, 'Tip: Ctrl/⌘ + Enter to check.'));
   setTimeout(() => ta.focus(), 30);
   return root;
 }
 
-/* Multiple choice. o: {prompt (node), options:[{label, correct}], explain (node), onNext(ok)} */
-function choice(o) {
-  const root = h('div'); const opts = h('div', { class: 'opts' }); const after = h('div');
-  const btns = shuffle(o.options).map(op => {
-    const b = h('button', { class: 'opt', type: 'button', onclick: () => {
-      btns.forEach(x => { x.disabled = true; });
-      btns.forEach((x, k) => { if (x._op.correct) x.classList.add('right'); });
-      if (!op.correct) b.classList.add('wrong');
-      after.append(h('div', { class: 'fb ' + (op.correct ? 'ok' : 'no') }, op.correct ? 'Correct! ✓' : 'Good try! The answer is highlighted in green.'), o.explain || '',
-        h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: () => o.onNext(op.correct) }, 'Continue →')));
-    } }, op.label);
-    b._op = op; return b;
-  });
-  opts.append(...btns); root.append(o.prompt, opts, after); return root;
+/* Phrase scramble. o: {text, afterGrade(res, actions, retry)} */
+function scramble(o) {
+  const parts = phrases(o.text);
+  let order; do { order = shuffle(parts.map((_, k) => k)); } while (parts.length > 2 && order.every((v, k) => v === k));
+  let placed = [], graded = false;
+  const root = h('div'), ans = h('div', { class: 'answer' }), pool = h('div', { class: 'pool' }), fb = h('div'), actions = h('div', { class: 'actions' });
+  const checkBtn = h('button', { class: 'btn primary', type: 'button', disabled: true, onclick: () => check() }, 'Check');
+  function draw() {
+    ans.replaceChildren(...placed.map((k, j) => h('button', { type: 'button', class: 'chip', onclick: () => { if (graded) return; placed.splice(j, 1); draw(); } }, parts[k])));
+    pool.replaceChildren(...order.filter(k => !placed.includes(k)).map(k => h('button', { type: 'button', class: 'chip', onclick: () => { if (graded) return; placed.push(k); draw(); } }, parts[k])));
+    checkBtn.disabled = placed.length !== parts.length;
+  }
+  function check() {
+    graded = true; let c = 0;
+    [...ans.children].forEach((el, j) => { const ok = parts[placed[j]] === parts[j]; if (ok) c++; el.classList.add(ok ? 'ok' : 'bad'); });
+    const res = { ok: c === parts.length, acc: c / parts.length, perfect: c === parts.length, hints: 0 };
+    fb.className = 'fb ' + (res.ok ? 'ok' : 'no');
+    fb.textContent = res.ok ? 'Perfect order! ✓' : c + ' of ' + parts.length + ' phrases in the right spot. Keep going, you\'re getting there!';
+    actions.replaceChildren();
+    if (!res.ok) actions.append(h('div', { style: 'flex:1 1 100%' }, h('div', { class: 'eyebrow' }, 'Correct order'), h('p', { style: 'margin:0' }, o.text)));
+    o.afterGrade(res, actions);
+  }
+  actions.append(checkBtn, h('button', { class: 'btn ghost', type: 'button', onclick: () => { if (!graded) { placed = []; draw(); } } }, 'Clear'));
+  draw();
+  root.append(ans, pool, fb, actions);
+  return root;
 }
 
 /* ================= HOME ================= */
@@ -498,18 +518,13 @@ function home() {
   const showReset = () => resetBox.replaceChildren(h('button', { class: 'btn ghost sm', onclick: () => {
     resetBox.replaceChildren(
       h('span', { style: 'margin-right:8px;color:var(--bad);font-weight:700' }, 'Erase all progress?'),
-      h('button', { class: 'btn bad sm', onclick: () => {
-        state = fresh(); save();
-        try { localStorage.removeItem(KEY); } catch (e) {}
-        home();
-      } }, 'Yes, erase'),
+      h('button', { class: 'btn bad sm', onclick: () => { state = fresh(); save(); home(); } }, 'Yes, erase'),
       ' ', h('button', { class: 'btn sm', onclick: showReset }, 'Cancel'));
   } }, 'Reset progress'));
   showReset();
-  const resetBtn = resetBox;
   app.append(h('div', { class: 'wrap' },
     h('h1', null, 'DAP: The 9 Principles'),
-    h('p', { class: 'sub' }, "NAEYC's Principles of Child Development and Learning. Learn the gist first, then the exact wording."),
+    h('p', { class: 'sub' }, "Memorize the exact wording of NAEYC's Principles of Child Development and Learning, one step at a time."),
     h('div', { class: 'stats' },
       h('div', { class: 'card stat' }, h('b', null, mastered + '/9'), h('span', null, 'mastered')),
       h('div', { class: 'card stat' }, h('b', null, dueIds.length), h('span', null, 'ready to review')),
@@ -517,13 +532,14 @@ function home() {
     dueIds.length
       ? h('button', { class: 'btn primary cta', onclick: () => startSmart({}) }, 'Review now (' + dueIds.length + ')')
       : h('button', { class: 'btn primary cta', onclick: () => startSmart({ ahead: true }) }, 'All caught up. Practice anyway'),
-    h('h2', null, 'Practice modes'),
+    h('p', { class: 'muted small', style: 'margin:8px 2px 0' }, 'Each principle climbs from 20% of words hidden → 40% → 60% → 80% → typing it from memory. Mastered = 3 perfect recalls spread over several days.'),
+    h('h2', null, 'Full-text drills'),
     h('div', { class: 'modes' },
-      mode('🗂️', 'Flashcards', 'Flip cards; mark known or still learning.', flashcards),
-      mode('✏️', 'Fill in the blank', 'Type the hidden words.', fillSetup),
+      mode('✏️', 'Fill in the blank', 'Type the hidden words at the difficulty you choose.', fillSetup),
       mode('🧹', 'Progressive removal', 'More words vanish each round, until all are gone.', progSetup),
-      mode('🧲', 'Matching', 'Drag numbers, keywords, and summaries into place.', matching),
-      mode('❓', 'Quiz & scenarios', 'Which principle fits this classroom moment?', quiz)),
+      mode('🔤', 'First-letter recall', 'See only the first letter of each word; type the full text.', firstSetup),
+      mode('🧩', 'Phrase scramble', 'Put the phrases back in the right order.', scrambleSetup),
+      mode('⌨️', 'Live typing', 'Type it from memory; each word turns green or red as you go.', liveSetup)),
     h('h2', null, 'The 9 principles'),
     h('div', { class: 'plist' }, IDS.map(i => {
       const s = state.p[i], p = P[i];
@@ -533,18 +549,18 @@ function home() {
           h('div', { class: 'bar' }, h('i', { class: stageCls(s), style: 'width:' + Math.max(4, progress(i) * 100) + '%' }))),
         h('div', { class: 'rt' }, h('span', { class: 'tag ' + stageCls(s) }, stageLabel(s)), h('div', null, dueText(i))));
     })),
-    h('div', { class: 'foot' }, h('span', null, 'Progress saves in this browser on this device.'), resetBtn)));
+    h('div', { class: 'foot' }, h('span', null, 'Progress saves in this browser on this device.'), resetBox)));
 }
 function detail(i) {
   const S = shell('Principle ' + P[i].n), s = state.p[i];
-  S.body.append(teach(i),
-    h('p', { class: 'muted' }, 'Stage: ' + stageLabel(s) + ' · ' + dueText(i)),
+  S.body.append(teach(i), ladder(s),
+    h('p', { class: 'muted' }, 'Step: ' + stageLabel(s) + ' · ' + dueText(i)),
     h('div', { class: 'actions' },
       h('button', { class: 'btn primary', onclick: () => startSmart({ only: i }) }, 'Practice this principle'),
       h('button', { class: 'btn', onclick: home }, 'Back')));
 }
 
-/* ================= SMART STUDY (stage-based, spaced repetition) ================= */
+/* ================= SMART STUDY ================= */
 function startSmart(opt) {
   let ids;
   if (opt.only != null) ids = [opt.only];
@@ -553,14 +569,16 @@ function startSmart(opt) {
   if (!ids.length) return home();
   const S = shell('Smart study');
   const before = Object.fromEntries(ids.map(i => [i, stageLabel(state.p[i])]));
-  const queue = [...ids], total = ids.length, requeued = new Set(), first = {}; let done = 0;
+  const queue = [...ids], total = ids.length, tries = {}, first = {}; let done = 0;
   function next() {
     if (!queue.length) return finish();
     const i = queue.shift();
     S.setProg(done / total); S.meta.textContent = Math.min(done + 1, total) + ' / ' + total;
-    smartTask(i, S, ok => {
+    smartTask(i, S, (ok, up) => {
       if (!(i in first)) first[i] = ok;
-      if (ok || requeued.has(i)) done++; else { requeued.add(i); queue.push(i); }
+      tries[i] = (tries[i] || 0) + 1;
+      /* retry a miss once; after a climb, try the next step right away (max 3 tries per principle) */
+      if (tries[i] < 3 && (up || (!ok && tries[i] === 1))) queue.push(i); else done++;
       next();
     });
   }
@@ -570,11 +588,10 @@ function startSmart(opt) {
     S.body.replaceChildren(
       h('div', { class: 'card' },
         h('h1', null, passed === total ? 'Nice work 🎉' : 'Good session!'),
-        h('p', { class: 'sub' }, passed + ' of ' + total + ' right on the first try.' + (passed < total ? " The rest will come back soon for another look." : '')),
+        h('p', { class: 'sub' }, passed + ' of ' + total + ' right on the first try.' + (passed < total ? ' The rest will come back soon for another look.' : '')),
         h('div', { class: 'plist' }, ids.map(i => h('div', { class: 'pcard', style: 'cursor:default' },
           h('span', { class: 'em' }, P[i].e),
-          h('div', null, h('div', { class: 'nm' }, h('span', null, '#' + P[i].n), P[i].k),
-            h('div', { class: 'muted' }, first[i] ? 'Got it ✓' : 'Coming back soon for another look')),
+          h('div', null, h('div', { class: 'nm' }, h('span', null, '#' + P[i].n), P[i].k), ladder(state.p[i])),
           h('div', { class: 'rt' }, before[i] === stageLabel(state.p[i]) ? stageLabel(state.p[i]) : before[i] + ' → ' + stageLabel(state.p[i]), h('div', null, dueText(i))))))),
       h('div', { class: 'actions' },
         h('button', { class: 'btn primary', onclick: home }, 'Home'),
@@ -585,219 +602,113 @@ function startSmart(opt) {
 function smartTask(i, S, cb) {
   const p = P[i], s = state.p[i], st = s.stage;
   function stageTask() {
-    const badge = h('div', { class: 'badge st' + st }, 'Stage ' + (st + 1) + ' of 4 · ' + STAGE_NAMES[st]);
-    const mk = (text, prompt, frac, mode) => {
-      const tokens = tokenize(text), hidden = frac === 1 ? new Set(eligible(tokens)) : pickHidden(tokens, frac, mode);
-      S.body.replaceChildren(badge, pChip(i, st === 0), h('div', { class: 'prompt' }, prompt),
-        cloze({ tokens, hidden, afterGrade: afterGrade }));
-    };
-    const afterGrade = (res, actions) => {
-      record(i, res.ok, st);
+    const badge = h('div', { class: 'badge st' + st }, 'Step ' + (st + 1) + ' of ' + STAGE_NAMES.length + ' · ' + (isMastered(s) ? 'Mastered: keep it fresh' : STAGE_NAMES[st]));
+    const finishTask = (res, actions, up) => {
+      if (up) actions.append(h('div', { class: 'fb ok', style: 'flex:1 1 100%;margin-top:0' }, '⬆️ Moved up to: ' + STAGE_NAMES[state.p[i].stage]));
       if (!res.ok) actions.append(h('div', { style: 'flex:1 1 100%' }, h('p', { class: 'muted', style: 'margin:0 0 8px' }, "Here's a quick refresher:"), teach(i)));
-      actions.append(h('button', { class: 'btn primary', onclick: () => cb(res.ok) }, 'Continue →'));
+      actions.append(h('button', { class: 'btn primary', onclick: () => cb(res.ok, up) }, 'Continue →'));
     };
-    if (st === 0) mk(p.k, 'Recall the keyword for this principle.', 1);
-    else if (st === 1) mk(p.s, 'Complete the summary.', 0.4, 'content');
-    else if (st === 2) mk(p.t, 'Fill in the missing words.', 0.5, 'random');
-    else if (s.streak < 2) mk(p.t, 'Full text: most words are missing.', 0.8, 'random');
-    else {
-      const tokens = tokenize(p.t);
-      S.body.replaceChildren(badge, pChip(i), h('div', { class: 'prompt' }, 'Write the whole principle from memory.'),
-        recall({ tokens, afterGrade: afterGrade }));
+    const tokens = tokenize(p.t);
+    if (st < LAST) {
+      S.body.replaceChildren(badge, ...head(i), h('div', { class: 'prompt' }, 'Fill in the missing words.'),
+        cloze({ tokens, hidden: pickHidden(tokens, STAGE_FRACS[st], 'random'), afterGrade: (res, actions) => finishTask(res, actions, record(i, res.ok, st) === 'up') }));
+    } else {
+      S.body.replaceChildren(badge, ...head(i), h('div', { class: 'prompt' }, 'Type the whole principle from memory. Every word counts here.'),
+        recall({ tokens, pass: 1, afterGrade: (res, actions) => finishTask(res, actions, recordRecall(i, res) === 'up') }));
     }
   }
   if (!s.seen) {
-    S.body.replaceChildren(h('div', { class: 'badge st0' }, 'New principle: read it first'), teach(i),
-      h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: stageTask }, 'Quiz me →')));
+    S.body.replaceChildren(h('div', { class: 'badge st0' }, 'New principle: read it a few times first'), teach(i),
+      h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: stageTask }, 'Start →')));
   } else stageTask();
 }
 
-/* ================= FLASHCARDS ================= */
-function flashcards() {
-  const S = shell('Flashcards');
-  let dir = 'fwd', shuf = true, deck = [], idx = 0, flipped = false, known = 0, learning = [];
-  function start(ids) { deck = shuf ? shuffle(ids) : [...ids]; idx = 0; flipped = false; known = 0; learning = []; draw(); }
-  function mark(ok) {
-    const i = deck[idx]; record(i, ok, 0);
-    if (ok) known++; else learning.push(i);
-    idx++; flipped = false; draw();
-  }
-  function draw() {
-    S.setProg(idx / deck.length); S.meta.textContent = Math.min(idx + 1, deck.length) + ' / ' + deck.length;
-    S.body.replaceChildren();
-    const opts = h('div', { class: 'row gap', style: 'margin-bottom:14px' },
-      seg([['fwd', 'Number → text'], ['rev', 'Summary → principle']], dir, v => { dir = v; start(IDS); }),
-      seg([[true, 'Shuffled'], [false, 'In order']], shuf, v => { shuf = v; start(IDS); }));
-    if (idx >= deck.length) {
-      S.meta.textContent = '';
-      S.body.append(opts, h('div', { class: 'card' }, h('h1', null, 'Round complete'),
-        h('p', { class: 'sub' }, known + ' known · ' + learning.length + ' still learning'),
-        h('div', { class: 'actions' },
-          learning.length ? h('button', { class: 'btn primary', onclick: () => start(learning) }, 'Review still-learning (' + learning.length + ')') : null,
-          h('button', { class: 'btn', onclick: () => start(IDS) }, 'Restart all'),
-          h('button', { class: 'btn ghost', onclick: home }, 'Home'))));
-      return;
-    }
-    const p = P[deck[idx]];
-    const front = dir === 'fwd'
-      ? [h('div', { class: 'em' }, p.e), h('div', { class: 'k' }, 'Principle #' + p.n), h('div', { class: 'tap' }, 'Tap to flip')]
-      : [h('div', { class: 'n' }, 'Which principle is this?'), h('div', { class: 's', style: 'font-size:1.2rem;margin-top:14px' }, p.s), h('div', { class: 'tap' }, 'Tap to flip')];
-    const back = dir === 'fwd'
-      ? [h('div', { class: 'k' }, p.k), h('div', { class: 'eyebrow' }, 'Summary'), h('div', { class: 's', style: 'margin-top:0' }, p.s), h('div', { class: 'eyebrow', style: 'text-align:left' }, 'Full text'), h('div', { class: 'f', style: 'margin-top:0' }, p.t)]
-      : [h('div', { class: 'em' }, p.e), h('div', { class: 'n' }, 'Principle #' + p.n), h('div', { class: 'k' }, p.k), h('div', { class: 'eyebrow', style: 'text-align:left' }, 'Full text'), h('div', { class: 'f', style: 'margin-top:0' }, p.t)];
-    S.body.append(opts,
-      h('button', { class: 'fcard' + (flipped ? ' flipped' : ''), onclick: () => { flipped = !flipped; draw(); } }, flipped ? back : front),
-      flipped ? h('div', { class: 'actions', style: 'justify-content:center' },
-        h('button', { class: 'btn bad', onclick: () => mark(false) }, '↺ Still learning'),
-        h('button', { class: 'btn good', onclick: () => mark(true) }, '✓ Known')) : null);
-  }
-  start(IDS);
-}
-
-/* ================= FILL IN THE BLANK ================= */
-function fillSetup() {
-  const S = shell('Fill in the blank');
-  let which = 'random', src = 'full', diff = 0.3;
+/* ================= DRILLS ================= */
+/* Shared setup screen: choose a principle (or random), optional extra fields, then run. */
+function drill(title, desc, extra, run) {
+  const S = shell(title); let which = 'random';
   const sel = h('select', { onchange: e => { which = e.target.value; } },
     h('option', { value: 'random' }, 'Random principle'), IDS.map(i => h('option', { value: i }, '#' + P[i].n + ' ' + P[i].k)));
+  const options = () => drill(title, desc, extra, run);
+  const go = () => run(S, which === 'random' ? pick(IDS) : +which, go, options);
   S.body.append(h('div', { class: 'card' },
-    h('div', { class: 'field' }, h('label', null, 'Principle'), sel),
-    h('div', { class: 'field' }, h('label', null, 'Text'), seg([['sum', 'Short summary'], ['full', 'Full wording']], src, v => { src = v; })),
-    h('div', { class: 'field' }, h('label', null, 'Difficulty'), seg([[0.15, 'Easy'], [0.3, 'Medium'], [0.5, 'Hard']], diff, v => { diff = v; })),
-    h('p', { class: 'muted' }, 'Hides the most meaningful words first. Space or Enter jumps to the next blank.'),
-    h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: () => run(which === 'random' ? pick(IDS) : +which) }, 'Start'))));
-  function run(i) {
-    const p = P[i], tokens = tokenize(src === 'sum' ? p.s : p.t), hidden = pickHidden(tokens, diff, 'content');
-    S.body.replaceChildren(pChip(i), h('div', { class: 'prompt' }, 'Fill in the missing words.'),
-      cloze({ tokens, hidden, afterGrade: (res, actions) => {
-        record(i, res.ok, src === 'sum' ? 1 : 2);
-        actions.append(
-          h('button', { class: 'btn primary', onclick: () => run(which === 'random' ? pick(IDS) : i) }, which === 'random' ? 'Next →' : 'New blanks →'),
-          h('button', { class: 'btn', onclick: fillSetup }, 'Options'));
+    h('div', { class: 'field' }, h('label', null, 'Principle'), sel), extra,
+    h('p', { class: 'muted' }, desc),
+    h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: go }, 'Start'))));
+}
+const endBtns = (actions, again, next, options) => actions.append(
+  h('button', { class: 'btn primary', onclick: next }, 'Next →'),
+  h('button', { class: 'btn', onclick: again }, 'Try again'),
+  h('button', { class: 'btn ghost', onclick: options }, 'Options'));
+
+let fillDiff = 1;
+function fillSetup() {
+  const extra = h('div', { class: 'field' }, h('label', null, 'Words hidden'),
+    seg(STAGE_FRACS.slice(0, LAST).map((f, k) => [k, Math.round(f * 100) + '%']), fillDiff, v => { fillDiff = v; }));
+  drill('Fill in the blank', 'Hides the most meaningful words first. Space or Enter jumps to the next blank.', extra, function run(S, i, next, options) {
+    const tokens = tokenize(P[i].t);
+    S.meta.textContent = Math.round(STAGE_FRACS[fillDiff] * 100) + '% hidden';
+    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Fill in the missing words.'),
+      cloze({ tokens, hidden: pickHidden(tokens, STAGE_FRACS[fillDiff], 'content'), afterGrade: (res, actions) => {
+        record(i, res.ok, fillDiff); endBtns(actions, () => run(S, i, next, options), next, options);
       } }));
-  }
+  });
 }
 
-/* ================= PROGRESSIVE REMOVAL ================= */
 function progSetup() {
-  const S = shell('Progressive removal');
-  let which = 0;
-  const sel = h('select', { onchange: e => { which = +e.target.value; } }, IDS.map(i => h('option', { value: i }, '#' + P[i].n + ' ' + P[i].k)));
-  S.body.append(h('div', { class: 'card' },
-    h('div', { class: 'field' }, h('label', null, 'Principle'), sel),
-    h('p', { class: 'muted' }, 'Five rounds: 20%, 40%, 60%, 80%, then 100% of the words hidden. Each round hides more of the same random set. Reach 90% to move up a round. Hints are fine, but you will try that round again without them.'),
-    h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: () => run(which) }, 'Start'))));
-  function run(i) {
-    const p = P[i], tokens = tokenize(p.t), order = shuffle(eligible(tokens)), levels = [0.2, 0.4, 0.6, 0.8, 1];
+  drill('Progressive removal', 'Five rounds on one principle: 20%, 40%, 60%, 80%, then 100% of the words hidden. Each round hides more of the same random set. Reach 90% to move up; the last round is typing it all from memory.', null, (S, i, next, options) => {
+    const tokens = tokenize(P[i].t), order = shuffle(eligible(tokens));
     let r = 0;
     function round() {
-      const frac = levels[r];
-      S.setProg(r / levels.length); S.meta.textContent = 'Round ' + (r + 1) + ' / ' + levels.length;
-      const head = [pChip(i), h('div', { class: 'prompt' }, Math.round(frac * 100) + '% of the words are hidden.')];
+      const frac = STAGE_FRACS[r];
+      S.setProg(r / STAGE_FRACS.length); S.meta.textContent = 'Round ' + (r + 1) + ' / ' + STAGE_FRACS.length;
+      const top = [...head(i), h('div', { class: 'prompt' }, frac === 1 ? 'All words removed. Type the whole principle.' : Math.round(frac * 100) + '% of the words are hidden.')];
       const after = (res, actions) => {
-        record(i, res.ok, frac >= 0.8 ? 3 : 2);
-        if (res.ok && r === levels.length - 1) {
+        if (frac === 1) recordRecall(i, res); else record(i, res.ok, r);
+        if (res.ok && r === LAST) {
           S.setProg(1);
-          actions.append(h('div', { class: 'fb ok', style: 'flex:1 1 100%' }, 'All words removed and you still recited it. 🎉'),
-            h('button', { class: 'btn primary', onclick: progSetup }, 'Another principle'), h('button', { class: 'btn', onclick: home }, 'Home'));
+          actions.append(h('div', { class: 'fb ok', style: 'flex:1 1 100%;margin-top:0' }, 'Every word removed and you still recited it. 🎉'),
+            h('button', { class: 'btn primary', onclick: next }, 'Next principle →'), h('button', { class: 'btn', onclick: home }, 'Home'));
         } else if (res.ok) actions.append(h('button', { class: 'btn primary', onclick: () => { r++; round(); } }, 'Next round →'));
         else actions.append(h('button', { class: 'btn primary', onclick: round }, 'Try this round again'),
           h('button', { class: 'btn', onclick: () => { r = Math.max(0, r - 1); round(); } }, 'Go back a round'));
       };
-      if (frac === 1) S.body.replaceChildren(...head, recall({ tokens, afterGrade: after }));
-      else {
-        const n = Math.max(1, Math.round(order.length * frac));
-        S.body.replaceChildren(...head, cloze({ tokens, hidden: new Set(order.slice(0, n)), afterGrade: after }));
-      }
+      if (frac === 1) S.body.replaceChildren(...top, recall({ tokens, afterGrade: after }));
+      else S.body.replaceChildren(...top, cloze({ tokens, hidden: new Set(order.slice(0, Math.max(1, Math.round(order.length * frac)))), afterGrade: after }));
     }
     round();
-  }
+  });
 }
 
-/* ================= MATCHING ================= */
-function matching() {
-  const S = shell('Matching');
-  const TYPES = {
-    nk: { name: 'Number → Keyword', level: 0, slot: i => '#' + P[i].n, chip: i => P[i].e + ' ' + P[i].k, long: false },
-    ks: { name: 'Keyword → Summary', level: 1, slot: i => P[i].e + ' ' + P[i].k, chip: i => P[i].s, long: true },
-    ns: { name: 'Number → Summary', level: 1, slot: i => '#' + P[i].n, chip: i => P[i].s, long: true }
-  };
-  S.body.append(h('div', { class: 'card' }, h('p', { class: 'prompt' }, 'Choose a matching round'),
-    h('p', { class: 'muted' }, 'Drag each chip onto its slot. On a touch screen, tap a chip, then tap a slot.'),
-    h('div', { class: 'actions' }, Object.entries(TYPES).map(([k, t]) => h('button', { class: 'btn primary', onclick: () => play(k) }, t.name)))));
-  function play(k) {
-    const T = TYPES[k], placed = new Set(), missed = new Set(); let selected = null, tries = 0;
-    const slotsEl = h('div', { class: 'mgrid' }), poolEl = h('div', { class: 'pool' }), info = h('div', { class: 'muted' });
-    const attempt = (c, s, dropEl) => {
-      tries++;
-      if (c === s) { placed.add(s); selected = null; draw(); if (placed.size === P.length) finish(); }
-      else { missed.add(c); missed.add(s); selected = null; draw(); const el = slotsEl.querySelector('[data-s="' + s + '"]'); if (el) { el.classList.add('shake'); setTimeout(() => el.classList.remove('shake'), 400); } }
-    };
-    function draw() {
-      const extra = tries - placed.size;
-      info.textContent = placed.size + ' / ' + P.length + ' matched' + (extra ? ' · ' + extra + ' extra ' + (extra === 1 ? 'try' : 'tries') : '');
-      slotsEl.replaceChildren(...IDS.map(i => {
-        const filled = placed.has(i);
-        const drop = h('div', { class: 'drop' + (filled ? ' filled' : ''), 'data-s': i }, filled ? T.chip(i) : '');
-        if (!filled) {
-          drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('over'); });
-          drop.addEventListener('dragleave', () => drop.classList.remove('over'));
-          drop.addEventListener('drop', e => { e.preventDefault(); drop.classList.remove('over'); const c = +e.dataTransfer.getData('text/plain'); if (!isNaN(c)) attempt(c, i); });
-          drop.addEventListener('click', () => { if (selected != null) attempt(selected, i); });
-        }
-        return h('div', { class: 'slot' }, h('div', { class: 'lab' }, T.slot(i)), drop);
-      }));
-      poolEl.replaceChildren(...order.filter(c => !placed.has(c)).map(c => {
-        const chip = h('div', { class: 'chip' + (T.long ? ' long' : '') + (selected === c ? ' sel' : ''), draggable: 'true' }, T.chip(c));
-        chip.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', String(c)); });
-        chip.addEventListener('click', () => { selected = selected === c ? null : c; draw(); });
-        return chip;
-      }));
-    }
-    const order = shuffle(IDS);
-    S.body.replaceChildren(h('div', { class: 'prompt' }, T.name), info, slotsEl, poolEl);
+function firstSetup() {
+  drill('First-letter recall', 'Shows the first letter of every word as a cue. Type the full principle. Reach 90% to pass.', null, function run(S, i, next, options) {
+    const tokens = tokenize(P[i].t);
     S.meta.textContent = '';
-    draw();
-    function finish() {
-      IDS.forEach(i => record(i, !missed.has(i), T.level));
-      S.body.replaceChildren(h('div', { class: 'card' }, h('h1', null, missed.size ? 'All matched!' : 'Perfect match 🎉'),
-        h('p', { class: 'sub' }, missed.size ? 'Worth another look: ' + [...missed].sort((a, b) => a - b).map(i => '#' + P[i].n).join(', ') : 'Every one on the first try.'),
-        h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: () => play(k) }, 'Play again'),
-          h('button', { class: 'btn', onclick: matching }, 'Other rounds'), h('button', { class: 'btn ghost', onclick: home }, 'Home'))));
-    }
-  }
+    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Type the full principle using the first letters as your guide.'),
+      recall({ tokens, cue: initials(tokens), hint: false, afterGrade: (res, actions) => {
+        record(i, res.ok, LAST - 1); endBtns(actions, () => run(S, i, next, options), next, options);
+      } }));
+  });
 }
 
-/* ================= QUIZ ================= */
-function quiz() {
-  const S = shell('Quiz & scenarios'), N = 10;
-  const ids = shuffle([...shuffle(IDS), pick(IDS)]).slice(0, N);
-  let q = 0, score = 0; const wrongIds = [];
-  function ask() {
-    if (q >= N) return end();
-    S.setProg(q / N); S.meta.textContent = (q + 1) + ' / ' + N;
-    const i = ids[q], p = P[i], r = Math.random();
-    const type = r < .4 ? 'sc' : r < .6 ? 'sum' : r < .75 ? 'frag' : r < .9 ? 'nk' : 'kn';
-    const others = shuffle(IDS.filter(j => j !== i)).slice(0, 3);
-    let prompt, options, level, labelFn = lab;
-    if (type === 'sc') { prompt = [h('div', { class: 'prompt' }, 'Which principle does this scenario best illustrate?'), h('p', { class: 'scn' }, pick(p.sc))]; level = 1; }
-    else if (type === 'sum') { prompt = [h('div', { class: 'prompt' }, 'Which principle says this?'), h('p', { class: 'scn' }, '“' + p.s + '”')]; level = 1; }
-    else if (type === 'frag') { prompt = [h('div', { class: 'prompt' }, 'Which principle begins like this?'), h('p', { class: 'scn' }, '“' + p.t.split(' ').slice(0, 9).join(' ') + '…”')]; level = 2; }
-    else if (type === 'nk') { prompt = [h('div', { class: 'prompt' }, 'What is the keyword for Principle #' + p.n + '?')]; labelFn = j => P[j].e + ' ' + P[j].k; level = 0; }
-    else { prompt = [h('div', { class: 'prompt' }, 'Which principle number is “' + p.k + '”?')]; labelFn = j => 'Principle #' + P[j].n; level = 0; }
-    options = [i, ...others].map(j => ({ label: labelFn(j), correct: j === i }));
-    S.body.replaceChildren(choice({ prompt: h('div', null, prompt), options,
-      explain: h('div', { class: 'card', style: 'margin-top:12px' }, h('b', null, lab(i)), h('div', { class: 'muted' }, p.s)),
-      onNext: ok => { record(i, ok, level); if (ok) score++; else wrongIds.push(i); q++; ask(); } }));
-  }
-  function end() {
-    S.setProg(1); S.meta.textContent = '';
-    const miss = [...new Set(wrongIds)];
-    S.body.replaceChildren(h('div', { class: 'card' }, h('h1', null, score + ' / ' + N),
-      h('p', { class: 'sub' }, miss.length ? 'Worth another look: ' + miss.map(lab).join(' · ') : 'Perfect score 🎉'),
-      h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: quiz }, 'New quiz'), h('button', { class: 'btn', onclick: home }, 'Home'))));
-  }
-  ask();
+function scrambleSetup() {
+  drill('Phrase scramble', 'The principle is cut into short phrases. Tap them in the right order; tap a placed phrase to send it back.', null, function run(S, i, next, options) {
+    S.meta.textContent = '';
+    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Put the phrases in order.'),
+      scramble({ text: P[i].t, afterGrade: (res, actions) => {
+        record(i, res.ok, 1); endBtns(actions, () => run(S, i, next, options), next, options);
+      } }));
+  });
+}
+
+function liveSetup() {
+  drill('Live typing', 'Type the principle from memory. Each word turns green or red as soon as you finish it, so you catch slips right away. "Next word" helps if you\'re stuck.', null, function run(S, i, next, options) {
+    S.meta.textContent = '';
+    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Type the whole principle from memory.'),
+      recall({ tokens: tokenize(P[i].t), live: true, afterGrade: (res, actions) => {
+        recordRecall(i, res); endBtns(actions, () => run(S, i, next, options), next, options);
+      } }));
+  });
 }
 
 home();
