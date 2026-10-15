@@ -115,6 +115,15 @@ textarea:focus{outline:2px solid var(--accent)}
 .typing{color:var(--muted);border-bottom:2px solid var(--accent)}
 .small{font-size:.85rem}
 
+/* pick a word */
+.slot{display:inline-block;min-width:4ch;border-bottom:2px dashed var(--line);text-align:center;color:var(--muted);line-height:1.3}
+.slot.cur{border-bottom:2px solid var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:800;border-radius:6px 6px 0 0}
+.pickopts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.opt{display:flex;align-items:center;gap:8px;justify-content:center;cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 10px;font-weight:700;font-size:1.02rem;box-shadow:var(--shadow);word-break:break-word}
+.opt:hover{border-color:var(--accent);background:var(--accent-soft)}
+.opt .key{font-size:.7rem;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 5px}
+@media (max-width:520px){.pickopts{grid-template-columns:1fr}}
+
 /* scramble */
 .answer{min-height:64px;border:2px dashed var(--line);border-radius:12px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;margin-bottom:14px}
 .answer:empty::before{content:'Tap phrases below in order…';color:var(--muted);font-size:.9rem;padding:6px}
@@ -536,6 +545,7 @@ function home() {
     h('h2', null, 'Full-text drills'),
     h('div', { class: 'modes' },
       mode('✏️', 'Fill in the blank', 'Type the hidden words at the difficulty you choose.', fillSetup),
+      mode('👆', 'Pick a word', 'Choose the missing word from three options.', pickSetup),
       mode('🧹', 'Progressive removal', 'More words vanish each round, until all are gone.', progSetup),
       mode('🔤', 'First-letter recall', 'See only the first letter of each word; type the full text.', firstSetup),
       mode('🧩', 'Phrase scramble', 'Put the phrases back in the right order.', scrambleSetup),
@@ -652,6 +662,59 @@ function fillSetup() {
       cloze({ tokens, hidden: pickHidden(tokens, STAGE_FRACS[fillDiff], 'content'), afterGrade: (res, actions) => {
         record(i, res.ok, fillDiff); endBtns(actions, () => run(S, i, next, options), next, options);
       } }));
+  });
+}
+
+let pickDiff = 1;
+function pickSetup() {
+  const extra = h('div', { class: 'field' }, h('label', null, 'Words to pick'),
+    seg([[0, '20%'], [1, '40%'], [2, '60%']], pickDiff, v => { pickDiff = v; }));
+  const allWords = [...new Set(P.flatMap(p => tokenize(p.t).map(t => t.core)).filter(hasAl))];
+  drill('Pick a word', 'Work through the blanks in order. For each one, pick the right word from three choices.', extra, function run(S, i, next, options) {
+    const tokens = tokenize(P[i].t);
+    const hidden = [...pickHidden(tokens, STAGE_FRACS[pickDiff], 'content')].sort((a, b) => a - b);
+    const result = {}; let k = 0, right = 0;
+    const para = h('p', { class: 'cloze-text' }), optsEl = h('div', { class: 'pickopts' }), fb = h('div'), actions = h('div', { class: 'actions' });
+    const matchCase = (w, ans) => /^[A-Z]/.test(ans) ? w[0].toUpperCase() + w.slice(1) : w.toLowerCase();
+    function choices(ans) {
+      const content = isContent(ans), n = norm(ans);
+      const pool = shuffle(allWords.filter(w => isContent(w) === content && norm(w) !== n));
+      const close = pool.filter(w => Math.abs(w.length - ans.length) <= 3);
+      const picks = [...new Set([...close, ...pool].map(w => matchCase(w, ans)))].filter(w => norm(w) !== n).slice(0, 2);
+      return shuffle([ans, ...picks]);
+    }
+    function draw() {
+      S.meta.textContent = Math.min(k + 1, hidden.length) + ' / ' + hidden.length;
+      S.setProg(k / hidden.length);
+      para.replaceChildren(...tokens.flatMap((t, j) => {
+        if (!hidden.includes(j)) return [tokText(t), ' '];
+        if (j in result) return [h('span', { class: 'blank ' + (result[j] ? 'ok' : 'bad') }, t.pre, h('span', { class: 'ans' }, t.core), t.suf), ' '];
+        return [h('span', { class: 'blank' }, t.pre, h('span', { class: 'slot' + (j === hidden[k] ? ' cur' : '') }, j === hidden[k] ? '?' : ' '), t.suf), ' '];
+      }));
+      if (k >= hidden.length) return done();
+      const ans = tokens[hidden[k]].core;
+      optsEl.replaceChildren(...choices(ans).map((w, n) => h('button', { class: 'opt', type: 'button', onclick: () => choose(w) }, h('span', { class: 'key' }, n + 1), w)));
+    }
+    function choose(w) {
+      const j = hidden[k], ok = norm(w) === norm(tokens[j].core);
+      result[j] = ok; if (ok) right++; k++; draw();
+    }
+    function done() {
+      document.removeEventListener('keydown', onKey);
+      optsEl.replaceChildren(); S.setProg(1);
+      const n = hidden.length, acc = right / n, ok = acc >= PASS;
+      fb.className = 'fb ' + (ok ? 'ok' : 'no');
+      fb.textContent = gradeMsg(right + ' of ' + n + ' correct', ok, right === n, 0);
+      record(i, ok, pickDiff);
+      endBtns(actions, () => run(S, i, next, options), next, options);
+    }
+    function onKey(e) {
+      if (!document.body.contains(optsEl)) return document.removeEventListener('keydown', onKey);
+      const b = optsEl.children[+e.key - 1]; if (b) b.click();
+    }
+    document.addEventListener('keydown', onKey);
+    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Pick the missing word. Keys 1, 2, 3 work too.'), para, optsEl, fb, actions);
+    draw();
   });
 }
 
