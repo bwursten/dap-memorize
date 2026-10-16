@@ -9,7 +9,7 @@
   --bg:#f6f6f2; --surface:#ffffff; --text:#1d1f23; --muted:#6b7078; --line:#e2e2dc;
   --accent:#3b5bdb; --accent-ink:#ffffff; --accent-soft:#e8edff;
   --good:#2b8a3e; --good-bg:#e6f4ea; --bad:#c92a2a; --bad-bg:#fdecec;
-  --s0:#868e96; --s1:#3b82f6; --s2:#8b5cf6; --s3:#0d9488; --s4:#e8590c; --s5:#2b8a3e;
+  --s0:#868e96; --s1:#3b82f6; --s5:#2b8a3e;
   --shadow:0 1px 2px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.05);
   --r:14px;
 }
@@ -18,7 +18,7 @@
     --bg:#14161a; --surface:#1e2127; --text:#eceef1; --muted:#9aa1ab; --line:#30353d;
     --accent:#8aa0ff; --accent-ink:#0e1122; --accent-soft:#252b44;
     --good:#69db7c; --good-bg:#17301f; --bad:#ff8787; --bad-bg:#3a1c1c;
-    --shadow:none;
+    --s5:#37b24d; --shadow:none;
   }
 }
 *{box-sizing:border-box}
@@ -30,6 +30,7 @@ h1{font-size:1.7rem;line-height:1.2;margin:8px 0 4px}
 h2{font-size:1.05rem;margin:28px 0 10px;letter-spacing:.01em}
 .sub{color:var(--muted);margin:0 0 16px}
 .muted{color:var(--muted)}
+.small{font-size:.85rem}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
 .btn{appearance:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:600;transition:transform .05s,background .15s}
 .btn:hover{background:var(--accent-soft)}
@@ -64,19 +65,33 @@ h2{font-size:1.05rem;margin:28px 0 10px;letter-spacing:.01em}
 .pcard .em{font-size:1.5rem}
 .pcard .nm{font-weight:700}
 .pcard .nm span{color:var(--muted);font-weight:600;margin-right:6px}
-.pcard .bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:6px}
-.pcard .bar i{display:block;height:100%}
 .pcard .rt{text-align:right;font-size:.8rem;color:var(--muted);white-space:nowrap}
+.dots{display:flex;gap:4px;margin-top:6px}
+.dots i{flex:1;max-width:44px;height:7px;border-radius:99px;background:var(--line)}
+.dots i.on{background:var(--s5)}
 .tag{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:99px;color:#fff}
-.st0{background:var(--s0)}.st1{background:var(--s1)}.st2{background:var(--s2)}.st3{background:var(--s3)}.st4{background:var(--s4)}.st5{background:var(--s5)}
-.ladder{display:flex;gap:4px;margin:10px 0 2px}
-.ladder span{flex:1;font-size:.7rem;text-align:center;padding:3px 0;border-radius:6px;background:var(--line);color:var(--muted);font-weight:700}
-.ladder span.on{color:#fff}
+.st0{background:var(--s0)}.st1{background:var(--s1)}.st5{background:var(--s5)}
 .foot{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;color:var(--muted);font-size:.85rem}
+
+/* principle page drill list */
+.dlist{display:grid;gap:8px;margin-top:8px}
+.drow{display:grid;grid-template-columns:30px auto 1fr auto;gap:12px;align-items:center;text-align:left;width:100%;cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px}
+.drow:hover:not([disabled]){border-color:var(--accent)}
+.drow .dnum{width:30px;height:30px;border-radius:99px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;background:var(--accent-soft);color:var(--accent)}
+.drow.done .dnum{background:var(--s5);color:#fff}
+.drow.locked{opacity:.55;cursor:default}
+.drow.locked .dnum{background:var(--line);color:var(--muted)}
+.drow.next{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.drow .mi{font-size:1.4rem}
+.drow b{display:block}
+.drow small{display:block;color:var(--muted);line-height:1.35}
+.drow .dgo{font-size:.85rem;font-weight:700;color:var(--accent);white-space:nowrap}
+.drow.done .dgo{color:var(--good)}
+.drow.locked .dgo{color:var(--muted)}
 
 /* study */
 .prompt{font-weight:700;margin:4px 0 10px}
-.badge{display:inline-block;font-size:.78rem;font-weight:700;color:#fff;padding:3px 10px;border-radius:99px;margin-bottom:10px}
+.badge{display:inline-block;font-size:.78rem;font-weight:700;color:#fff;padding:3px 10px;border-radius:99px;margin-bottom:10px;background:var(--accent)}
 .pchip{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);border-radius:99px;padding:4px 12px;font-weight:700;margin-bottom:6px}
 .pchip .em{font-size:1.2rem}
 .pchip .num{color:var(--muted)}
@@ -93,6 +108,8 @@ h2{font-size:1.05rem;margin:28px 0 10px;letter-spacing:.01em}
 .fb{margin-top:14px;padding:10px 14px;border-radius:10px;font-weight:600}
 .fb.ok{background:var(--good-bg);color:var(--good)}
 .fb.no{background:var(--bad-bg);color:var(--bad)}
+.fb.info{background:var(--accent-soft);color:var(--text);font-weight:500}
+.banner{flex:1 1 100%;margin:0}
 
 /* cloze */
 .cloze-text{font-size:1.1rem;line-height:2.5;margin:8px 0}
@@ -102,6 +119,14 @@ h2{font-size:1.05rem;margin:28px 0 10px;letter-spacing:.01em}
 .blank.ok .ans{color:var(--good);background:var(--good-bg);border-radius:6px;padding:1px 5px;font-weight:700}
 .blank.bad .ans{color:var(--bad);background:var(--bad-bg);border-radius:6px;padding:1px 5px;font-weight:700}
 .blank .typed{color:var(--muted);margin-right:4px}
+
+/* pick a word */
+.slot{display:inline-block;min-width:4ch;border-bottom:2px dashed var(--line);text-align:center;color:var(--muted);line-height:1.3}
+.slot.cur{border-bottom:2px solid var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:800;border-radius:6px 6px 0 0}
+.pickopts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.opt{display:flex;align-items:center;gap:8px;justify-content:center;cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 10px;font-weight:700;font-size:1.02rem;box-shadow:var(--shadow);word-break:break-word}
+.opt:hover{border-color:var(--accent);background:var(--accent-soft)}
+.opt .key{font-size:.7rem;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 5px}
 
 /* recall */
 textarea{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:12px;resize:vertical;font-size:1.02rem;line-height:1.6}
@@ -113,16 +138,6 @@ textarea:focus{outline:2px solid var(--accent)}
 .liveview{min-height:3.2em;line-height:2;margin:0 0 10px;padding:8px 12px;border:1px dashed var(--line);border-radius:10px}
 .liveview:empty::before{content:'Your words appear here, green when right and red when off.';color:var(--muted);font-size:.9rem}
 .typing{color:var(--muted);border-bottom:2px solid var(--accent)}
-.small{font-size:.85rem}
-
-/* pick a word */
-.slot{display:inline-block;min-width:4ch;border-bottom:2px dashed var(--line);text-align:center;color:var(--muted);line-height:1.3}
-.slot.cur{border-bottom:2px solid var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:800;border-radius:6px 6px 0 0}
-.pickopts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
-.opt{display:flex;align-items:center;gap:8px;justify-content:center;cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 10px;font-weight:700;font-size:1.02rem;box-shadow:var(--shadow);word-break:break-word}
-.opt:hover{border-color:var(--accent);background:var(--accent-soft)}
-.opt .key{font-size:.7rem;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 5px}
-@media (max-width:520px){.pickopts{grid-template-columns:1fr}}
 
 /* scramble */
 .answer{min-height:64px;border:2px dashed var(--line);border-radius:12px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;margin-bottom:14px}
@@ -144,7 +159,9 @@ select{border:1px solid var(--line);background:var(--surface);border-radius:10px
 @media (max-width:520px){
   .stats{gap:6px}
   .cloze-text{font-size:1.02rem}
-  .ladder span{font-size:.62rem}
+  .pickopts{grid-template-columns:1fr}
+  .drow{grid-template-columns:30px 1fr auto}
+  .drow .mi{display:none}
 }
 </style>
 </head>
@@ -184,17 +201,23 @@ const P = [
     t:"Used responsibly and intentionally, technology and interactive media can be valuable tools for supporting children's development and learning." }
 ];
 
-/* ================= LEARNING PATH =================
-   Every principle climbs a ladder on its exact wording:
-   20% of words hidden -> 40% -> 60% -> 80% -> the whole thing from memory.
-   Mastered = MASTER perfect from-memory recalls, spaced out over days. */
+/* ================= DRILLS =================
+   Each principle has six drills, unlocked in order (easiest first).
+   Finishing all six completes the principle; completed principles then come back
+   for spaced from-memory reviews (1 day, 3 days, 7 days, ...). */
+const DRILLS = [
+  { id: 'pick',     ic: '👆', name: 'Pick a word',        desc: 'Choose the missing word from three options.',            rule: 'Pass with 60% of words to pick, 90%+ correct.' },
+  { id: 'scramble', ic: '🧩', name: 'Phrase scramble',    desc: 'Put the phrases back in the right order.',               rule: 'Put every phrase in the right order.' },
+  { id: 'fill',     ic: '✏️', name: 'Fill in the blank',  desc: 'Type the hidden words at the difficulty you choose.',    rule: 'Pass with 80% of words hidden, 90%+ correct, no hints.' },
+  { id: 'first',    ic: '🔤', name: 'First-letter recall', desc: 'See only first letters; type the full text.',            rule: 'Type the full text from first letters, 90%+ correct.' },
+  { id: 'prog',     ic: '🧹', name: 'Progressive removal', desc: 'More words vanish each round, until all are gone.',      rule: 'Finish all five rounds, ending with the whole text from memory.' },
+  { id: 'live',     ic: '⌨️', name: 'Live typing',         desc: 'Type it from memory; each word turns green or red.',     rule: 'Type it from memory with every word right and no hints.' }
+];
+const DRILL = Object.fromEntries(DRILLS.map((d, k) => [d.id, Object.assign(d, { k })]));
 const STAGE_FRACS = [0.2, 0.4, 0.6, 0.8, 1];
-const STAGE_NAMES = ['20% hidden', '40% hidden', '60% hidden', '80% hidden', 'From memory'];
-const STAGE_SHORT = ['20%', '40%', '60%', '80%', 'Recall'];
-const LAST = STAGE_NAMES.length - 1;
-const NEED = [1, 1, 1, 2];   // passes needed to climb out of each practice step
-const MASTER = 3;            // perfect from-memory recalls needed for "Mastered"
-const PASS = 0.9;            // practice steps pass at 90%; the final step needs 100%
+const LAST = STAGE_FRACS.length - 1;
+const FILL_REQ = 3, PICK_REQ = 2;   // required difficulty index to check off Fill (80%) and Pick (60%)
+const PASS = 0.9;
 const STOP = new Set('the and that with their from each both also when they have which through within across must can are for its our into than this these those between because although been were was has had who whom while about such other more most some any all'.split(' '));
 
 /* ================= HELPERS ================= */
@@ -215,20 +238,20 @@ const pick = a => a[Math.floor(Math.random() * a.length)];
 const IDS = P.map((_, i) => i);
 const app = document.getElementById('app');
 
-/* ================= STORAGE + SPACED REPETITION ================= */
+/* ================= STORAGE ================= */
 const KEY = 'dap-memorize-v1';
-const fresh = () => ({ v: 3, p: P.map(() => ({ stage: 0, streak: 0, due: 0, seen: false, misses: 0 })) });
+const allDone = () => Object.fromEntries(DRILLS.map(d => [d.id, true]));
+const fresh = () => ({ v: 4, p: P.map(() => ({ done: {}, seen: false, due: 0, rstreak: 0 })) });
 function loadState() {
   let s = null;
   try { const raw = localStorage.getItem(KEY); if (raw) s = JSON.parse(raw); } catch (e) {}
   if (!s || !Array.isArray(s.p) || s.p.length !== P.length) return fresh();
-  if (!s.v) { s.p.forEach(x => { x.stage = Math.max(0, (x.stage || 0) - 1); }); s.v = 2; }
-  if (s.v === 2) { // old path: 0 summary, 1 partial, 2 full text
-    s.p.forEach(x => {
-      if (x.stage === 2 && x.streak >= 4) { x.stage = LAST; x.streak = MASTER; }
-      else { x.stage = [0, 1, 3][Math.min(2, x.stage || 0)]; x.streak = 0; }
+  if (s.v !== 4) { // older versions used a step ladder: keep anything that was mastered
+    s.p = s.p.map(x => {
+      const m = (s.v === 3 && x.stage === 4 && x.streak >= 3) || (s.v === 2 && x.stage === 2 && x.streak >= 4) || (!s.v && x.stage === 3 && x.streak >= 4);
+      return { done: m ? allDone() : {}, seen: !!x.seen, due: m ? (x.due || 0) : 0, rstreak: m ? 1 : 0 };
     });
-    s.v = 3;
+    s.v = 4;
   }
   return s;
 }
@@ -236,48 +259,38 @@ let state = loadState();
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 
 const MIN = 60e3, DAY = 864e5, INT = [10 * MIN, DAY, 3 * DAY, 7 * DAY, 14 * DAY, 30 * DAY];
-
-/* level = which step a task exercises (0 = 20% hidden ... 4 = from memory).
-   A pass only moves a principle forward if level >= its current step.
-   A miss (or using a hint) resets the streak and brings it back soon.
-   Returns 'up' when the principle climbed a step. */
-function record(i, ok, level) {
-  const s = state.p[i], now = Date.now(); let out = null;
-  s.seen = true;
-  if (!ok) {
-    s.streak = 0; s.misses = (s.misses || 0) + 1; s.due = now + 2 * MIN;
-    if (s.misses >= 3 && s.stage > 0) { s.stage--; s.misses = 0; }
-  } else {
-    s.misses = 0;
-    if (level >= s.stage) {
-      s.streak++;
-      if (s.stage < LAST && s.streak >= NEED[s.stage]) { s.stage++; s.streak = 0; s.due = now; out = 'up'; }
-      else s.due = now + (s.stage < LAST ? 10 * MIN : INT[Math.min(s.streak - 1, INT.length - 1)]);
-    }
-  }
-  save(); return out;
-}
-/* From-memory attempts: 100% counts toward mastery, 90%+ counts as an 80%-step pass. */
-function recordRecall(i, res) {
-  if (res.hints) return record(i, false, LAST);
-  if (res.perfect) return record(i, true, LAST);
-  if (res.acc >= PASS) return record(i, true, LAST - 1);
-  return record(i, false, LAST);
-}
-const TOTAL_STEPS = NEED.reduce((a, b) => a + b, 0) + MASTER;
-const steps = s => NEED.slice(0, s.stage).reduce((a, b) => a + b, 0) + Math.min(s.streak, s.stage < LAST ? NEED[s.stage] : MASTER);
-const progress = i => steps(state.p[i]) / TOTAL_STEPS;
-const isMastered = s => s.stage === LAST && s.streak >= MASTER;
-const stageLabel = s => isMastered(s) ? 'Mastered' : STAGE_NAMES[s.stage];
-const stageCls = s => 'st' + (isMastered(s) ? 5 : s.stage);
-const isDue = i => state.p[i].due <= Date.now();
+const doneCount = i => DRILLS.filter(d => state.p[i].done[d.id]).length;
+const isComplete = i => doneCount(i) === DRILLS.length;
+const nextDrill = i => DRILLS.findIndex(d => !state.p[i].done[d.id]);          // -1 when complete
+const unlocked = (i, id) => { const n = nextDrill(i); return n < 0 || DRILL[id].k <= n; };
+const progress = i => doneCount(i) / DRILLS.length;
+const isDue = i => isComplete(i) && state.p[i].due <= Date.now();
+const statusLabel = i => isComplete(i) ? 'Complete' : doneCount(i) ? doneCount(i) + ' of 6 drills' : 'Not started';
+const statusCls = i => isComplete(i) ? 'st5' : doneCount(i) ? 'st1' : 'st0';
 function dueText(i) {
-  const s = state.p[i]; if (!s.seen) return 'New';
-  const d = s.due - Date.now();
+  if (!isComplete(i)) return 'Next: ' + DRILLS[nextDrill(i)].name;
+  const d = state.p[i].due - Date.now();
   if (d <= 0) return 'Ready to review';
   if (d < 60 * MIN) return 'Review in ' + Math.ceil(d / MIN) + ' min';
-  if (d < DAY) return 'Review in ' + Math.round(d / 36e5) + ' h';
+  if (Math.round(d / 36e5) < 24) return 'Review in ' + Math.round(d / 36e5) + ' h';
   return 'Review in ' + Math.round(d / DAY) + ' d';
+}
+/* Check off a drill. Returns 'done', 'complete', 'again' (already done), 'locked', or null (not passed). */
+function markDrill(i, id, ok) {
+  if (!ok) return null;
+  const s = state.p[i]; s.seen = true;
+  if (s.done[id]) { save(); return 'again'; }
+  if (!unlocked(i, id)) { save(); return 'locked'; }
+  s.done[id] = true;
+  let out = 'done';
+  if (isComplete(i)) { s.due = Date.now() + DAY; s.rstreak = 0; out = 'complete'; }
+  save(); return out;
+}
+function recordReview(i, ok) {
+  const s = state.p[i];
+  if (ok) { s.rstreak++; s.due = Date.now() + INT[Math.min(s.rstreak, INT.length - 1)]; }
+  else { s.rstreak = 0; s.due = Date.now() + 10 * MIN; }
+  save();
 }
 
 /* ================= TEXT / GRADING ================= */
@@ -300,7 +313,6 @@ function pickHidden(tokens, frac, mode) {
   return new Set(order.slice(0, n));
 }
 const initials = tokens => tokens.map(t => hasAl(t.core) ? t.pre + t.core[0] + t.suf : t.pre + t.suf).join(' ');
-/* Split a principle into short phrases at punctuation, then break up long runs. */
 function phrases(text) {
   const runs = []; let cur = [];
   tokenize(text).forEach(t => {
@@ -350,10 +362,10 @@ function seg(opts, val, on) {
     h('button', { type: 'button', class: 'segb' + (v === val ? ' on' : ''), onclick: () => { val = v; render(); on(v); } }, l)));
   render(); return wrap;
 }
-function shell(title) {
+function shell(title, backFn, backLabel) {
   app.replaceChildren(); window.scrollTo(0, 0);
   const meta = h('div', { class: 'meta' });
-  const bar = h('div', { class: 'topbar' }, h('button', { class: 'btn ghost sm', onclick: home }, '← Home'), h('div', { class: 'ttl' }, title), meta);
+  const bar = h('div', { class: 'topbar' }, h('button', { class: 'btn ghost sm', onclick: backFn || home }, '← ' + (backLabel || 'Home')), h('div', { class: 'ttl' }, title), meta);
   const prog = h('div', { class: 'prog' }, h('i'));
   const body = h('div', { class: 'body' });
   app.append(h('div', { class: 'wrap' }, bar, prog, body));
@@ -362,16 +374,13 @@ function shell(title) {
 const pChip = i => h('div', { class: 'pchip' }, h('span', { class: 'em' }, P[i].e), h('span', { class: 'num' }, '#' + P[i].n), h('span', null, P[i].k));
 const meaning = i => h('p', { class: 'meaning' }, h('b', null, 'Meaning'), P[i].s);
 const head = i => [pChip(i), meaning(i)];
+const dots = i => h('div', { class: 'dots' }, DRILLS.map(d => h('i', { class: state.p[i].done[d.id] ? 'on' : '', title: d.name })));
 function teach(i) {
   const p = P[i];
   return h('div', { class: 'card teach' },
     h('div', { class: 't-head' }, h('span', { class: 'big-em' }, p.e), h('div', null, h('div', { class: 't-num' }, 'Principle ' + p.n), h('div', { class: 't-kw' }, p.k))),
     h('div', { class: 'eyebrow' }, 'Full text'), h('p', { class: 't-full' }, p.t),
     h('div', { class: 'eyebrow' }, 'Summary'), h('p', { class: 't-sum' }, p.s));
-}
-function ladder(s) {
-  return h('div', { class: 'ladder' }, STAGE_SHORT.map((l, k) =>
-    h('span', { class: (k < s.stage || isMastered(s)) ? 'on st5' : k === s.stage ? 'on st' + k : '' }, l)));
 }
 function gradeMsg(score, ok, perfect, hints, tip) {
   if (ok) return (perfect ? 'Perfect! ' : 'Nice work! ') + score + ' ✓';
@@ -431,8 +440,7 @@ function cloze(o) {
 }
 
 /* Type the whole principle.
-   o: {tokens, afterGrade, pass (default 0.9), cue (text shown above, e.g. first letters),
-       live (color each word as you type), hint (false to hide the hint button)} */
+   o: {tokens, afterGrade, pass (default 0.9; 1 = every word), cue, live, hint (false hides it)} */
 function recall(o) {
   const root = h('div');
   const words = eligible(o.tokens), A = words.map(i => norm(o.tokens[i].core));
@@ -475,7 +483,7 @@ function recall(o) {
       orig.append(h('span', { class: hit[k++] ? 'hit' : 'miss' }, tokText(t)), ' ');
     });
     out.replaceChildren(h('div', { class: 'muted', style: 'margin-top:12px' }, 'Original (green = you recalled it, red = still to learn):'), orig);
-    const tip = pass >= 1 && acc >= PASS ? 'So close! Every word is needed for this step.' : 'Aim for ' + Math.round(pass * 100) + '% to move up.';
+    const tip = pass >= 1 && acc >= PASS ? 'So close! Every word is needed here.' : 'Aim for ' + Math.round(pass * 100) + '% to pass.';
     fb.className = 'fb ' + (res.ok ? 'ok' : 'no');
     fb.textContent = gradeMsg(Math.floor(acc * 100) + '% word match', res.ok, perfect, hints, tip);
     actions.replaceChildren(); o.afterGrade(res, actions);
@@ -488,7 +496,7 @@ function recall(o) {
   return root;
 }
 
-/* Phrase scramble. o: {text, afterGrade(res, actions, retry)} */
+/* Phrase scramble. o: {text, afterGrade(res, actions)} */
 function scramble(o) {
   const parts = phrases(o.text);
   let order; do { order = shuffle(parts.map((_, k) => k)); } while (parts.length > 2 && order.every((v, k) => v === k));
@@ -505,7 +513,7 @@ function scramble(o) {
     [...ans.children].forEach((el, j) => { const ok = parts[placed[j]] === parts[j]; if (ok) c++; el.classList.add(ok ? 'ok' : 'bad'); });
     const res = { ok: c === parts.length, acc: c / parts.length, perfect: c === parts.length, hints: 0 };
     fb.className = 'fb ' + (res.ok ? 'ok' : 'no');
-    fb.textContent = res.ok ? 'Perfect order! ✓' : c + ' of ' + parts.length + ' phrases in the right spot. Keep going, you\'re getting there!';
+    fb.textContent = res.ok ? 'Perfect order! ✓' : c + ' of ' + parts.length + " phrases in the right spot. Keep going, you're getting there!";
     actions.replaceChildren();
     if (!res.ok) actions.append(h('div', { style: 'flex:1 1 100%' }, h('div', { class: 'eyebrow' }, 'Correct order'), h('p', { style: 'margin:0' }, o.text)));
     o.afterGrade(res, actions);
@@ -520,9 +528,10 @@ function scramble(o) {
 function home() {
   app.replaceChildren(); window.scrollTo(0, 0);
   const dueIds = IDS.filter(isDue);
-  const mastered = state.p.filter(isMastered).length;
-  const overall = Math.round(IDS.reduce((a, i) => a + progress(i), 0) / P.length * 100);
-  const mode = (ic, name, desc, fn) => h('button', { class: 'mode', onclick: fn }, h('span', { class: 'mi' }, ic), h('span', null, h('b', null, name), h('small', null, desc)));
+  const complete = IDS.filter(isComplete).length;
+  const drillsDone = IDS.reduce((a, i) => a + doneCount(i), 0);
+  const nextP = IDS.find(i => !isComplete(i));
+  const mode = d => h('button', { class: 'mode', onclick: () => drillSetup(d.id) }, h('span', { class: 'mi' }, d.ic), h('span', null, h('b', null, d.name), h('small', null, d.desc)));
   const resetBox = h('div');
   const showReset = () => resetBox.replaceChildren(h('button', { class: 'btn ghost sm', onclick: () => {
     resetBox.replaceChildren(
@@ -531,148 +540,77 @@ function home() {
       ' ', h('button', { class: 'btn sm', onclick: showReset }, 'Cancel'));
   } }, 'Reset progress'));
   showReset();
+  const continueBtn = (primary) => nextP == null ? null : h('button', { class: 'btn ' + (primary ? 'primary cta' : 'cta'), onclick: () => continueP(nextP) },
+    (state.p[nextP].seen ? 'Continue' : 'Start') + ': #' + P[nextP].n + ' ' + P[nextP].k + ' · ' + DRILLS[nextDrill(nextP)].name);
   app.append(h('div', { class: 'wrap' },
     h('h1', null, 'DAP: The 9 Principles'),
-    h('p', { class: 'sub' }, "Memorize the exact wording of NAEYC's Principles of Child Development and Learning, one step at a time."),
+    h('p', { class: 'sub' }, "Memorize the exact wording of NAEYC's Principles of Child Development and Learning, one drill at a time."),
     h('div', { class: 'stats' },
-      h('div', { class: 'card stat' }, h('b', null, mastered + '/9'), h('span', null, 'mastered')),
-      h('div', { class: 'card stat' }, h('b', null, dueIds.length), h('span', null, 'ready to review')),
-      h('div', { class: 'card stat' }, h('b', null, overall + '%'), h('span', null, 'overall'))),
+      h('div', { class: 'card stat' }, h('b', null, complete + '/9'), h('span', null, 'principles complete')),
+      h('div', { class: 'card stat' }, h('b', null, drillsDone + '/' + (P.length * DRILLS.length)), h('span', null, 'drills done')),
+      h('div', { class: 'card stat' }, h('b', null, dueIds.length), h('span', null, 'ready to review'))),
     dueIds.length
-      ? h('button', { class: 'btn primary cta', onclick: () => startSmart({}) }, 'Review now (' + dueIds.length + ')')
-      : h('button', { class: 'btn primary cta', onclick: () => startSmart({ ahead: true }) }, 'All caught up. Practice anyway'),
-    h('p', { class: 'muted small', style: 'margin:8px 2px 0' }, 'Each principle climbs from 20% of words hidden → 40% → 60% → 80% → typing it from memory. Mastered = 3 perfect recalls spread over several days.'),
-    h('h2', null, 'Full-text drills'),
-    h('div', { class: 'modes' },
-      mode('✏️', 'Fill in the blank', 'Type the hidden words at the difficulty you choose.', fillSetup),
-      mode('👆', 'Pick a word', 'Choose the missing word from three options.', pickSetup),
-      mode('🧹', 'Progressive removal', 'More words vanish each round, until all are gone.', progSetup),
-      mode('🔤', 'First-letter recall', 'See only the first letter of each word; type the full text.', firstSetup),
-      mode('🧩', 'Phrase scramble', 'Put the phrases back in the right order.', scrambleSetup),
-      mode('⌨️', 'Live typing', 'Type it from memory; each word turns green or red as you go.', liveSetup)),
+      ? [h('button', { class: 'btn primary cta', onclick: () => startReview({}) }, 'Review now (' + dueIds.length + ')'), nextP != null ? h('div', { style: 'height:8px' }) : null, continueBtn(false)]
+      : nextP != null ? continueBtn(true)
+      : h('button', { class: 'btn primary cta', onclick: () => startReview({ ahead: true }) }, 'All 9 complete! Review anyway'),
+    h('p', { class: 'muted small', style: 'margin:8px 2px 0' }, 'Each principle has 6 drills that unlock in order. Finish all 6 to complete it. Completed principles come back for quick from-memory reviews so they stick.'),
     h('h2', null, 'The 9 principles'),
     h('div', { class: 'plist' }, IDS.map(i => {
-      const s = state.p[i], p = P[i];
+      const p = P[i];
       return h('button', { class: 'pcard', onclick: () => detail(i) },
         h('span', { class: 'em' }, p.e),
-        h('div', null, h('div', { class: 'nm' }, h('span', null, '#' + p.n), p.k),
-          h('div', { class: 'bar' }, h('i', { class: stageCls(s), style: 'width:' + Math.max(4, progress(i) * 100) + '%' }))),
-        h('div', { class: 'rt' }, h('span', { class: 'tag ' + stageCls(s) }, stageLabel(s)), h('div', null, dueText(i))));
+        h('div', null, h('div', { class: 'nm' }, h('span', null, '#' + p.n), p.k), dots(i)),
+        h('div', { class: 'rt' }, h('span', { class: 'tag ' + statusCls(i) }, statusLabel(i)), h('div', null, dueText(i))));
     })),
+    h('h2', null, 'Free practice'),
+    h('p', { class: 'muted small', style: 'margin:-4px 0 10px' }, 'Pick any drill and principle. A pass here also checks off that drill if it is unlocked for the principle.'),
+    h('div', { class: 'modes' }, DRILLS.map(mode)),
     h('div', { class: 'foot' }, h('span', null, 'Progress saves in this browser on this device.'), resetBox)));
 }
+const continueP = i => state.p[i].seen ? openDrill(i, DRILLS[nextDrill(i)].id) : detail(i);
+
+/* ================= PRINCIPLE PAGE ================= */
 function detail(i) {
-  const S = shell('Principle ' + P[i].n), s = state.p[i];
-  S.body.append(teach(i), ladder(s),
-    h('p', { class: 'muted' }, 'Step: ' + stageLabel(s) + ' · ' + dueText(i)),
-    h('div', { class: 'actions' },
-      h('button', { class: 'btn primary', onclick: () => startSmart({ only: i }) }, 'Practice this principle'),
-      h('button', { class: 'btn', onclick: home }, 'Back')));
+  const S = shell('Principle ' + P[i].n);
+  if (!state.p[i].seen) { state.p[i].seen = true; save(); }
+  const n = nextDrill(i);
+  S.setProg(progress(i));
+  S.meta.textContent = doneCount(i) + ' / 6 drills';
+  S.body.append(teach(i),
+    h('h2', null, isComplete(i) ? 'All 6 drills complete 🎉' : 'Drills (' + doneCount(i) + ' of 6 done)'),
+    h('div', { class: 'dlist' }, DRILLS.map((d, k) => {
+      const done = !!state.p[i].done[d.id], locked = !done && n >= 0 && k > n, isNext = k === n;
+      return h('button', { class: 'drow' + (done ? ' done' : '') + (locked ? ' locked' : '') + (isNext ? ' next' : ''), disabled: locked, onclick: () => openDrill(i, d.id) },
+        h('span', { class: 'dnum' }, done ? '✓' : locked ? '🔒' : k + 1),
+        h('span', { class: 'mi' }, d.ic),
+        h('span', null, h('b', null, d.name), h('small', null, d.rule)),
+        h('span', { class: 'dgo' }, done ? 'Practice' : locked ? 'Locked' : 'Start →'));
+    })),
+    isComplete(i) ? h('div', { class: 'actions' },
+      h('button', { class: 'btn primary', onclick: () => startReview({ only: i }) }, 'Review from memory'),
+      h('span', { class: 'muted small', style: 'align-self:center' }, dueText(i))) : null);
 }
 
-/* ================= SMART STUDY ================= */
-function startSmart(opt) {
-  let ids;
-  if (opt.only != null) ids = [opt.only];
-  else if (opt.ahead) ids = [...IDS].sort((a, b) => state.p[a].due - state.p[b].due).slice(0, 5);
-  else ids = IDS.filter(isDue).sort((a, b) => state.p[a].due - state.p[b].due).slice(0, 12);
-  if (!ids.length) return home();
-  const S = shell('Smart study');
-  const before = Object.fromEntries(ids.map(i => [i, stageLabel(state.p[i])]));
-  const queue = [...ids], total = ids.length, tries = {}, first = {}; let done = 0;
-  function next() {
-    if (!queue.length) return finish();
-    const i = queue.shift();
-    S.setProg(done / total); S.meta.textContent = Math.min(done + 1, total) + ' / ' + total;
-    smartTask(i, S, (ok, up) => {
-      if (!(i in first)) first[i] = ok;
-      tries[i] = (tries[i] || 0) + 1;
-      /* retry a miss once; after a climb, try the next step right away (max 3 tries per principle) */
-      if (tries[i] < 3 && (up || (!ok && tries[i] === 1))) queue.push(i); else done++;
-      next();
-    });
-  }
-  function finish() {
-    S.setProg(1); S.meta.textContent = '';
-    const passed = ids.filter(i => first[i]).length;
-    S.body.replaceChildren(
-      h('div', { class: 'card' },
-        h('h1', null, passed === total ? 'Nice work 🎉' : 'Good session!'),
-        h('p', { class: 'sub' }, passed + ' of ' + total + ' right on the first try.' + (passed < total ? ' The rest will come back soon for another look.' : '')),
-        h('div', { class: 'plist' }, ids.map(i => h('div', { class: 'pcard', style: 'cursor:default' },
-          h('span', { class: 'em' }, P[i].e),
-          h('div', null, h('div', { class: 'nm' }, h('span', null, '#' + P[i].n), P[i].k), ladder(state.p[i])),
-          h('div', { class: 'rt' }, before[i] === stageLabel(state.p[i]) ? stageLabel(state.p[i]) : before[i] + ' → ' + stageLabel(state.p[i]), h('div', null, dueText(i))))))),
-      h('div', { class: 'actions' },
-        h('button', { class: 'btn primary', onclick: home }, 'Home'),
-        h('button', { class: 'btn', onclick: () => startSmart(opt.only != null ? opt : { ahead: !IDS.some(isDue) }) }, 'Keep going')));
-  }
-  next();
-}
-function smartTask(i, S, cb) {
-  const p = P[i], s = state.p[i], st = s.stage;
-  function stageTask() {
-    const badge = h('div', { class: 'badge st' + st }, 'Step ' + (st + 1) + ' of ' + STAGE_NAMES.length + ' · ' + (isMastered(s) ? 'Mastered: keep it fresh' : STAGE_NAMES[st]));
-    const finishTask = (res, actions, up) => {
-      if (up) actions.append(h('div', { class: 'fb ok', style: 'flex:1 1 100%;margin-top:0' }, '⬆️ Moved up to: ' + STAGE_NAMES[state.p[i].stage]));
-      if (!res.ok) actions.append(h('div', { style: 'flex:1 1 100%' }, h('p', { class: 'muted', style: 'margin:0 0 8px' }, "Here's a quick refresher:"), teach(i)));
-      actions.append(h('button', { class: 'btn primary', onclick: () => cb(res.ok, up) }, 'Continue →'));
-    };
-    const tokens = tokenize(p.t);
-    if (st < LAST) {
-      S.body.replaceChildren(badge, ...head(i), h('div', { class: 'prompt' }, 'Fill in the missing words.'),
-        cloze({ tokens, hidden: pickHidden(tokens, STAGE_FRACS[st], 'random'), afterGrade: (res, actions) => finishTask(res, actions, record(i, res.ok, st) === 'up') }));
-    } else {
-      S.body.replaceChildren(badge, ...head(i), h('div', { class: 'prompt' }, 'Type the whole principle from memory. Every word counts here.'),
-        recall({ tokens, pass: 1, afterGrade: (res, actions) => finishTask(res, actions, recordRecall(i, res) === 'up') }));
-    }
-  }
-  if (!s.seen) {
-    S.body.replaceChildren(h('div', { class: 'badge st0' }, 'New principle: read it a few times first'), teach(i),
-      h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: stageTask }, 'Start →')));
-  } else stageTask();
+/* ================= DRILL RUNNERS =================
+   run(S, i, nav, opts): S = screen, i = principle, nav = navigation after a drill,
+   opts = {diff} for drills with a difficulty setting. Each calls finishDrill() when graded. */
+function finishDrill(actions, i, id, ok, eligibleToCheck, nav, again) {
+  const r = eligibleToCheck ? markDrill(i, id, ok) : null;
+  const note = (cls, text) => actions.append(h('div', { class: 'fb ' + cls + ' banner' }, text));
+  if (r === 'done') note('ok', '✓ ' + DRILL[id].name + ' checked off for #' + P[i].n + ' (' + doneCount(i) + ' of 6)');
+  else if (r === 'complete') note('ok', '🎉 Principle #' + P[i].n + ' complete! All 6 drills done.');
+  else if (r === 'locked') note('info', 'Nice! This counts as practice. To check it off for #' + P[i].n + ', finish its earlier drills first.');
+  else if (ok && !eligibleToCheck) note('info', 'Nice! To check this drill off, pass it at the ' + (id === 'fill' ? '80%' : '60%') + ' setting.');
+  const nx = nav.next();
+  actions.append(h('button', { class: 'btn primary', onclick: nx.fn }, nx.label), h('button', { class: 'btn', onclick: again }, 'Try again'));
+  if (!nx.isBack) actions.append(h('button', { class: 'btn ghost', onclick: nav.back.fn }, nav.back.label));
 }
 
-/* ================= DRILLS ================= */
-/* Shared setup screen: choose a principle (or random), optional extra fields, then run. */
-function drill(title, desc, extra, run) {
-  const S = shell(title); let which = 'random';
-  const sel = h('select', { onchange: e => { which = e.target.value; } },
-    h('option', { value: 'random' }, 'Random principle'), IDS.map(i => h('option', { value: i }, '#' + P[i].n + ' ' + P[i].k)));
-  const options = () => drill(title, desc, extra, run);
-  const go = () => run(S, which === 'random' ? pick(IDS) : +which, go, options);
-  S.body.append(h('div', { class: 'card' },
-    h('div', { class: 'field' }, h('label', null, 'Principle'), sel), extra,
-    h('p', { class: 'muted' }, desc),
-    h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: go }, 'Start'))));
-}
-const endBtns = (actions, again, next, options) => actions.append(
-  h('button', { class: 'btn primary', onclick: next }, 'Next →'),
-  h('button', { class: 'btn', onclick: again }, 'Try again'),
-  h('button', { class: 'btn ghost', onclick: options }, 'Options'));
-
-let fillDiff = 1;
-function fillSetup() {
-  const extra = h('div', { class: 'field' }, h('label', null, 'Words hidden'),
-    seg(STAGE_FRACS.slice(0, LAST).map((f, k) => [k, Math.round(f * 100) + '%']), fillDiff, v => { fillDiff = v; }));
-  drill('Fill in the blank', 'Hides the most meaningful words first. Space or Enter jumps to the next blank.', extra, function run(S, i, next, options) {
-    const tokens = tokenize(P[i].t);
-    S.meta.textContent = Math.round(STAGE_FRACS[fillDiff] * 100) + '% hidden';
-    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Fill in the missing words.'),
-      cloze({ tokens, hidden: pickHidden(tokens, STAGE_FRACS[fillDiff], 'content'), afterGrade: (res, actions) => {
-        record(i, res.ok, fillDiff); endBtns(actions, () => run(S, i, next, options), next, options);
-      } }));
-  });
-}
-
-let pickDiff = 1;
-function pickSetup() {
-  const extra = h('div', { class: 'field' }, h('label', null, 'Words to pick'),
-    seg([[0, '20%'], [1, '40%'], [2, '60%']], pickDiff, v => { pickDiff = v; }));
-  const allWords = [...new Set(P.flatMap(p => tokenize(p.t).map(t => t.core)).filter(hasAl))];
-  drill('Pick a word', 'Work through the blanks in order. For each one, pick the right word from three choices.', extra, function run(S, i, next, options) {
-    const tokens = tokenize(P[i].t);
-    const hidden = [...pickHidden(tokens, STAGE_FRACS[pickDiff], 'content')].sort((a, b) => a - b);
+const RUN = {
+  pick(S, i, nav, opts) {
+    const diff = opts.diff, tokens = tokenize(P[i].t);
+    const allWords = [...new Set(P.flatMap(p => tokenize(p.t).map(t => t.core)).filter(hasAl))];
+    const hidden = [...pickHidden(tokens, STAGE_FRACS[diff], 'content')].sort((a, b) => a - b);
     const result = {}; let k = 0, right = 0;
     const para = h('p', { class: 'cloze-text' }), optsEl = h('div', { class: 'pickopts' }), fb = h('div'), actions = h('div', { class: 'actions' });
     const matchCase = (w, ans) => /^[A-Z]/.test(ans) ? w[0].toUpperCase() + w.slice(1) : w.toLowerCase();
@@ -692,21 +630,16 @@ function pickSetup() {
         return [h('span', { class: 'blank' }, t.pre, h('span', { class: 'slot' + (j === hidden[k] ? ' cur' : '') }, j === hidden[k] ? '?' : ' '), t.suf), ' '];
       }));
       if (k >= hidden.length) return done();
-      const ans = tokens[hidden[k]].core;
-      optsEl.replaceChildren(...choices(ans).map((w, n) => h('button', { class: 'opt', type: 'button', onclick: () => choose(w) }, h('span', { class: 'key' }, n + 1), w)));
+      optsEl.replaceChildren(...choices(tokens[hidden[k]].core).map((w, n) => h('button', { class: 'opt', type: 'button', onclick: () => choose(w) }, h('span', { class: 'key' }, n + 1), w)));
     }
-    function choose(w) {
-      const j = hidden[k], ok = norm(w) === norm(tokens[j].core);
-      result[j] = ok; if (ok) right++; k++; draw();
-    }
+    function choose(w) { const j = hidden[k], ok = norm(w) === norm(tokens[j].core); result[j] = ok; if (ok) right++; k++; draw(); }
     function done() {
       document.removeEventListener('keydown', onKey);
       optsEl.replaceChildren(); S.setProg(1);
-      const n = hidden.length, acc = right / n, ok = acc >= PASS;
+      const n = hidden.length, ok = right / n >= PASS;
       fb.className = 'fb ' + (ok ? 'ok' : 'no');
       fb.textContent = gradeMsg(right + ' of ' + n + ' correct', ok, right === n, 0);
-      record(i, ok, pickDiff);
-      endBtns(actions, () => run(S, i, next, options), next, options);
+      finishDrill(actions, i, 'pick', ok, diff >= PICK_REQ, nav, () => RUN.pick(S, i, nav, opts));
     }
     function onKey(e) {
       if (!document.body.contains(optsEl)) return document.removeEventListener('keydown', onKey);
@@ -715,11 +648,27 @@ function pickSetup() {
     document.addEventListener('keydown', onKey);
     S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Pick the missing word. Keys 1, 2, 3 work too.'), para, optsEl, fb, actions);
     draw();
-  });
-}
-
-function progSetup() {
-  drill('Progressive removal', 'Five rounds on one principle: 20%, 40%, 60%, 80%, then 100% of the words hidden. Each round hides more of the same random set. Reach 90% to move up; the last round is typing it all from memory.', null, (S, i, next, options) => {
+  },
+  scramble(S, i, nav, opts) {
+    S.meta.textContent = ''; S.setProg(0);
+    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Put the phrases in order. Tap a placed phrase to send it back.'),
+      scramble({ text: P[i].t, afterGrade: (res, actions) => finishDrill(actions, i, 'scramble', res.ok, true, nav, () => RUN.scramble(S, i, nav, opts)) }));
+  },
+  fill(S, i, nav, opts) {
+    const diff = opts.diff, tokens = tokenize(P[i].t);
+    S.meta.textContent = Math.round(STAGE_FRACS[diff] * 100) + '% hidden'; S.setProg(0);
+    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Fill in the missing words. Space or Enter jumps to the next blank.'),
+      cloze({ tokens, hidden: pickHidden(tokens, STAGE_FRACS[diff], 'content'),
+        afterGrade: (res, actions) => finishDrill(actions, i, 'fill', res.ok, diff >= FILL_REQ, nav, () => RUN.fill(S, i, nav, opts)) }));
+  },
+  first(S, i, nav, opts) {
+    const tokens = tokenize(P[i].t);
+    S.meta.textContent = ''; S.setProg(0);
+    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Type the full principle using the first letters as your guide.'),
+      recall({ tokens, cue: initials(tokens), hint: false,
+        afterGrade: (res, actions) => finishDrill(actions, i, 'first', res.ok, true, nav, () => RUN.first(S, i, nav, opts)) }));
+  },
+  prog(S, i, nav, opts) {
     const tokens = tokenize(P[i].t), order = shuffle(eligible(tokens));
     let r = 0;
     function round() {
@@ -727,12 +676,8 @@ function progSetup() {
       S.setProg(r / STAGE_FRACS.length); S.meta.textContent = 'Round ' + (r + 1) + ' / ' + STAGE_FRACS.length;
       const top = [...head(i), h('div', { class: 'prompt' }, frac === 1 ? 'All words removed. Type the whole principle.' : Math.round(frac * 100) + '% of the words are hidden.')];
       const after = (res, actions) => {
-        if (frac === 1) recordRecall(i, res); else record(i, res.ok, r);
-        if (res.ok && r === LAST) {
-          S.setProg(1);
-          actions.append(h('div', { class: 'fb ok', style: 'flex:1 1 100%;margin-top:0' }, 'Every word removed and you still recited it. 🎉'),
-            h('button', { class: 'btn primary', onclick: next }, 'Next principle →'), h('button', { class: 'btn', onclick: home }, 'Home'));
-        } else if (res.ok) actions.append(h('button', { class: 'btn primary', onclick: () => { r++; round(); } }, 'Next round →'));
+        if (res.ok && r === LAST) { S.setProg(1); finishDrill(actions, i, 'prog', true, true, nav, () => RUN.prog(S, i, nav, opts)); }
+        else if (res.ok) actions.append(h('button', { class: 'btn primary', onclick: () => { r++; round(); } }, 'Next round →'));
         else actions.append(h('button', { class: 'btn primary', onclick: round }, 'Try this round again'),
           h('button', { class: 'btn', onclick: () => { r = Math.max(0, r - 1); round(); } }, 'Go back a round'));
       };
@@ -740,38 +685,85 @@ function progSetup() {
       else S.body.replaceChildren(...top, cloze({ tokens, hidden: new Set(order.slice(0, Math.max(1, Math.round(order.length * frac)))), afterGrade: after }));
     }
     round();
-  });
+  },
+  live(S, i, nav, opts) {
+    S.meta.textContent = ''; S.setProg(0);
+    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Type the whole principle from memory. Every word counts.'),
+      recall({ tokens: tokenize(P[i].t), live: true, pass: 1,
+        afterGrade: (res, actions) => finishDrill(actions, i, 'live', res.ok, true, nav, () => RUN.live(S, i, nav, opts)) }));
+  }
+};
+
+/* Open a drill from a principle page: difficulty is fixed at the level needed to check it off. */
+function openDrill(i, id) {
+  const S = shell('#' + P[i].n + ' · ' + DRILL[id].name, () => detail(i), 'Principle');
+  const nav = {
+    next: () => {
+      const n = nextDrill(i);
+      if (n < 0 || DRILLS[n].id === id) return { label: 'Back to principle', fn: () => detail(i), isBack: true };
+      return { label: 'Next drill: ' + DRILLS[n].name + ' →', fn: () => openDrill(i, DRILLS[n].id) };
+    },
+    back: { label: 'Principle page', fn: () => detail(i) }
+  };
+  RUN[id](S, i, nav, { diff: id === 'fill' ? FILL_REQ : PICK_REQ });
 }
 
-function firstSetup() {
-  drill('First-letter recall', 'Shows the first letter of every word as a cue. Type the full principle. Reach 90% to pass.', null, function run(S, i, next, options) {
-    const tokens = tokenize(P[i].t);
-    S.meta.textContent = '';
-    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Type the full principle using the first letters as your guide.'),
-      recall({ tokens, cue: initials(tokens), hint: false, afterGrade: (res, actions) => {
-        record(i, res.ok, LAST - 1); endBtns(actions, () => run(S, i, next, options), next, options);
-      } }));
-  });
+/* Open a drill from Free practice: choose a principle (and difficulty where it applies). */
+const DIFF = { fill: FILL_REQ, pick: PICK_REQ };
+function drillSetup(id) {
+  const d = DRILL[id], S = shell(d.name); let which = 'random';
+  const sel = h('select', { onchange: e => { which = e.target.value; } },
+    h('option', { value: 'random' }, 'Random principle'), IDS.map(i => h('option', { value: i }, '#' + P[i].n + ' ' + P[i].k + (isComplete(i) ? ' ✓' : ''))));
+  const extra = id === 'fill' ? h('div', { class: 'field' }, h('label', null, 'Words hidden'), seg([0, 1, 2, 3].map(k => [k, Math.round(STAGE_FRACS[k] * 100) + '%']), DIFF.fill, v => { DIFF.fill = v; }))
+    : id === 'pick' ? h('div', { class: 'field' }, h('label', null, 'Words to pick'), seg([0, 1, 2].map(k => [k, Math.round(STAGE_FRACS[k] * 100) + '%']), DIFF.pick, v => { DIFF.pick = v; }))
+    : null;
+  const go = () => {
+    const i = which === 'random' ? pick(IDS) : +which;
+    const S2 = shell(d.name, () => drillSetup(id), 'Options');
+    RUN[id](S2, i, { next: () => ({ label: 'Next →', fn: go }), back: { label: 'Options', fn: () => drillSetup(id) } }, { diff: DIFF[id] });
+  };
+  S.body.append(h('div', { class: 'card' },
+    h('p', { style: 'margin-top:0' }, d.desc),
+    h('div', { class: 'field' }, h('label', null, 'Principle'), sel), extra,
+    h('p', { class: 'muted small' }, 'To check off: ' + d.rule),
+    h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: go }, 'Start'))));
 }
 
-function scrambleSetup() {
-  drill('Phrase scramble', 'The principle is cut into short phrases. Tap them in the right order; tap a placed phrase to send it back.', null, function run(S, i, next, options) {
-    S.meta.textContent = '';
-    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Put the phrases in order.'),
-      scramble({ text: P[i].t, afterGrade: (res, actions) => {
-        record(i, res.ok, 1); endBtns(actions, () => run(S, i, next, options), next, options);
+/* ================= REVIEWS (completed principles) ================= */
+function startReview(opt) {
+  let ids;
+  if (opt.only != null) ids = [opt.only];
+  else if (opt.ahead) ids = IDS.filter(isComplete).sort((a, b) => state.p[a].due - state.p[b].due).slice(0, 5);
+  else ids = IDS.filter(isDue).sort((a, b) => state.p[a].due - state.p[b].due);
+  if (!ids.length) return home();
+  const S = shell('Review');
+  const queue = [...ids], total = ids.length, tries = {}, first = {}; let done = 0;
+  function next() {
+    if (!queue.length) return finish();
+    const i = queue.shift();
+    S.setProg(done / total); S.meta.textContent = Math.min(done + 1, total) + ' / ' + total;
+    S.body.replaceChildren(h('div', { class: 'badge' }, 'Review · from memory'), ...head(i),
+      h('div', { class: 'prompt' }, 'Type the whole principle from memory. Every word counts.'),
+      recall({ tokens: tokenize(P[i].t), pass: 1, afterGrade: (res, actions) => {
+        recordReview(i, res.ok);
+        if (!(i in first)) first[i] = res.ok;
+        tries[i] = (tries[i] || 0) + 1;
+        actions.append(h('button', { class: 'btn primary', onclick: () => { if (!res.ok && tries[i] === 1) queue.push(i); else done++; next(); } }, 'Continue →'));
       } }));
-  });
-}
-
-function liveSetup() {
-  drill('Live typing', 'Type the principle from memory. Each word turns green or red as soon as you finish it, so you catch slips right away. "Next word" helps if you\'re stuck.', null, function run(S, i, next, options) {
-    S.meta.textContent = '';
-    S.body.replaceChildren(...head(i), h('div', { class: 'prompt' }, 'Type the whole principle from memory.'),
-      recall({ tokens: tokenize(P[i].t), live: true, afterGrade: (res, actions) => {
-        recordRecall(i, res); endBtns(actions, () => run(S, i, next, options), next, options);
-      } }));
-  });
+  }
+  function finish() {
+    S.setProg(1); S.meta.textContent = '';
+    const passed = ids.filter(i => first[i]).length;
+    S.body.replaceChildren(h('div', { class: 'card' },
+      h('h1', null, passed === total ? 'Nice work 🎉' : 'Good session!'),
+      h('p', { class: 'sub' }, passed + ' of ' + total + ' perfect on the first try.' + (passed < total ? ' The rest will come back soon for another look.' : '')),
+      h('div', { class: 'plist' }, ids.map(i => h('div', { class: 'pcard', style: 'cursor:default' },
+        h('span', { class: 'em' }, P[i].e),
+        h('div', null, h('div', { class: 'nm' }, h('span', null, '#' + P[i].n), P[i].k), h('div', { class: 'muted small' }, first[i] ? 'Got it ✓' : 'Coming back soon for another look')),
+        h('div', { class: 'rt' }, dueText(i)))))),
+      h('div', { class: 'actions' }, h('button', { class: 'btn primary', onclick: home }, 'Home')));
+  }
+  next();
 }
 
 home();
